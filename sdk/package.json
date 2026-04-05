@@ -1,0 +1,16 @@
+{
+  "name": "x402-insights",
+  "version": "0.1.0",
+  "description": "See what your agent is spending in real time.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["x402", "agent", "observability", "cost-tracking"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bortlesboat/x402-insights"
+  }
+}

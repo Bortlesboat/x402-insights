@@ -1,0 +1,27 @@
+{
+  "name": "@x402-insights/facilitator",
+  "version": "0.1.0",
+  "description": "Drop-in x402-insights adapter for any x402Facilitator. One line to add spend observability.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "x402",
+    "facilitator",
+    "observability",
+    "cost-tracking"
+  ],
+  "peerDependencies": {
+    "@x402/core": "*"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bortlesboat/x402-insights"
+  },
+  "dependencies": {
+    "typescript": "^6.0.2"
+  }
+}
