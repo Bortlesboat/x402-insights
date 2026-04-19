@@ -82,6 +82,24 @@ Hooks into the 6 lifecycle events on any `x402Facilitator` instance:
 | `onAfterSettle` | settle | Latency, cost (from `requirements.amount`), tx result |
 | `onSettleFailure` | settle | Error, cost of failed settlement |
 
+## Leaderboard tracker
+
+`x402_leaderboard_tracker.py` scrapes x402scan's public tRPC endpoint daily and stores snapshots in SQLite (`x402_leaderboard.db`).
+
+**Tracks per entry:** merchant, origin, facilitator, txn count, volume, unique buyers, chain.
+
+**Day-over-day diffs:** new entrants, dropoffs, volume movers (>20% change), rank changes.
+
+```bash
+# Fetch latest snapshot
+python x402_leaderboard_tracker.py
+
+# View last snapshot without fetching
+python x402_leaderboard_tracker.py --report
+```
+
+Runs on a daily cron at 8AM.
+
 ## v1 scope (intentional)
 
 - Manual cost input on SDK calls (auto-capture from x402 headers is next)
