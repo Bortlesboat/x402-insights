@@ -89,8 +89,27 @@ function derivedProvider(requirements: any): string {
 
 function inferCurrency(requirements: any, override?: string): string {
   if (override) return override;
-  // For v1, default USDC. Future: map asset address -> symbol.
   return "USDC";
+}
+
+// v2 protocol renamed maxAmountRequired → amount. Read new field first, fall back for v1 back-compat.
+function readAmount(requirements: any): string {
+  return requirements?.amount ?? requirements?.maxAmountRequired ?? "0";
+}
+
+// Hook context field name varies across versions/hooks (requirements vs paymentRequirements).
+function readRequirements(ctx: any): any {
+  return ctx?.requirements ?? ctx?.paymentRequirements ?? {};
+}
+
+// v2 PaymentRequirements has no top-level resource field. Resource URL lives either
+// on the top-level PaymentRequired response (not in hook ctx) or in extra.resourceUrl.
+function readEndpoint(requirements: any): string {
+  return (
+    requirements?.extra?.resourceUrl ??
+    requirements?.resource ??
+    "unknown"
+  );
 }
 
 export function attachInsights(
@@ -151,9 +170,9 @@ export function attachInsights(
       const t = timers.get("verify:" + reqId);
       timers.delete("verify:" + reqId);
       const latency_ms = t ? Date.now() - t.startedAt : 0;
-      const req = ctx?.requirements ?? {};
+      const req = readRequirements(ctx);
       void emit({
-        endpoint: req.resource ?? "unknown",
+        endpoint: readEndpoint(req),
         provider: derivedProvider(req),
         currency: inferCurrency(req, currency),
         cost: 0, // verify doesn't spend
@@ -172,9 +191,9 @@ export function attachInsights(
       const t = timers.get("verify:" + reqId);
       timers.delete("verify:" + reqId);
       const latency_ms = t ? Date.now() - t.startedAt : 0;
-      const req = ctx?.requirements ?? {};
+      const req = readRequirements(ctx);
       void emit({
-        endpoint: req.resource ?? "unknown",
+        endpoint: readEndpoint(req),
         provider: derivedProvider(req),
         currency: inferCurrency(req, currency),
         cost: 0,
@@ -203,10 +222,10 @@ export function attachInsights(
       const t = timers.get("settle:" + reqId);
       timers.delete("settle:" + reqId);
       const latency_ms = t ? Date.now() - t.startedAt : 0;
-      const req = ctx?.requirements ?? {};
-      const cost = atomicToHuman(req.maxAmountRequired ?? "0", assetDecimals);
+      const req = readRequirements(ctx);
+      const cost = atomicToHuman(readAmount(req), assetDecimals);
       void emit({
-        endpoint: req.resource ?? "unknown",
+        endpoint: readEndpoint(req),
         provider: derivedProvider(req),
         currency: inferCurrency(req, currency),
         cost,
@@ -225,10 +244,10 @@ export function attachInsights(
       const t = timers.get("settle:" + reqId);
       timers.delete("settle:" + reqId);
       const latency_ms = t ? Date.now() - t.startedAt : 0;
-      const req = ctx?.requirements ?? {};
-      const cost = atomicToHuman(req.maxAmountRequired ?? "0", assetDecimals);
+      const req = readRequirements(ctx);
+      const cost = atomicToHuman(readAmount(req), assetDecimals);
       void emit({
-        endpoint: req.resource ?? "unknown",
+        endpoint: readEndpoint(req),
         provider: derivedProvider(req),
         currency: inferCurrency(req, currency),
         cost, // charge still counted — retry waste appears here

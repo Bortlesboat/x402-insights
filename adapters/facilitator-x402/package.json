@@ -1,6 +1,6 @@
 {
   "name": "@x402-insights/facilitator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Drop-in x402-insights adapter for any x402Facilitator. One line to add spend observability.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "type": "git",
     "url": "https://github.com/Bortlesboat/x402-insights"
   },
-  "dependencies": {
-    "typescript": "^6.0.2"
+  "devDependencies": {
+    "typescript": "^6.0.0"
   }
 }
