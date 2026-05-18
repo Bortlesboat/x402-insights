@@ -6,6 +6,7 @@ AgentOps Ledger extends the original `x402-insights` spend observability project
 
 Hosted demo: https://bortlesboat.github.io/x402-insights/
 Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
+Public launch page: https://bortlesboat.github.io/x402-insights/launch.html
 Hosted video: https://youtu.be/De8c_IgCueU
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
 Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
