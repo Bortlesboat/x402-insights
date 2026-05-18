@@ -7,6 +7,8 @@ AgentOps Ledger extends the original `x402-insights` spend observability project
 Hosted demo: https://bortlesboat.github.io/x402-insights/
 Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
+Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
+Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 
 ![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
 
@@ -153,6 +155,7 @@ The live paid route `https://bitcoinsapi.com/api/v1/fees/landscape` returns an x
 The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
 
 Proof packet: [docs/hackathon/splunk-hec-proof.md](docs/hackathon/splunk-hec-proof.md)
+Video upload package: [docs/hackathon/video-hosting.md](docs/hackathon/video-hosting.md)
 
 ```powershell
 $env:AGENTOPS_BASE_URL = "http://localhost:4000"
