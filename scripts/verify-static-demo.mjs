@@ -17,6 +17,7 @@ const investigationSearches = await readFile(
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
 const videoHostingUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md";
 const investigationPackUrl = "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack";
+const hostedVideoUrl = "https://youtu.be/De8c_IgCueU";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -50,6 +51,7 @@ const requiredSnippets = [
   trackerUrl,
   videoHostingUrl,
   investigationPackUrl,
+  hostedVideoUrl,
 ];
 
 for (const snippet of requiredSnippets) {
@@ -67,6 +69,7 @@ assert.match(
   /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/10/,
   "README must link the public submission/outcome tracker",
 );
+assert.match(readme, /https:\/\/youtu\.be\/De8c_IgCueU/, "README must link the public hosted video");
 assert.doesNotMatch(html, /C:[/\\]Users/i, "demo page must not expose local Windows paths");
 assert.doesNotMatch(caseStudy, /C:[/\\]Users/i, "case study page must not expose local Windows paths");
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
@@ -93,6 +96,7 @@ const caseStudyRequiredSnippets = [
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
   videoHostingUrl,
   trackerUrl,
+  hostedVideoUrl,
 ];
 
 for (const snippet of caseStudyRequiredSnippets) {
@@ -118,6 +122,7 @@ assert.match(
   /https:\/\/github\.com\/Bortlesboat\/x402-insights\/tree\/main\/adapters\/splunk-hec\/investigation-pack/,
   "submission draft must link the Splunk investigation pack",
 );
+assert.match(submission, /https:\/\/youtu\.be\/De8c_IgCueU/, "submission draft must link the public hosted video");
 
 const parsedInvestigationSearches = JSON.parse(investigationSearches);
 assert.ok(Array.isArray(parsedInvestigationSearches), "investigation searches must be an array");
@@ -136,6 +141,7 @@ const videoHostingRequiredSnippets = [
   "agentops-ledger-video-thumbnail.png",
   "Splunk Agentic Ops Devpost",
   trackerUrl,
+  hostedVideoUrl,
 ];
 
 for (const snippet of videoHostingRequiredSnippets) {

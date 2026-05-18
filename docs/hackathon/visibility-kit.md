@@ -120,7 +120,7 @@ The result is a dashboard and exportable audit JSON that answers the questions e
 ## Visibility Sequence
 
 1. Merge PR to main.
-2. Record the 90-second demo video.
+2. Publish the hosted demo video.
 3. Submit to NandaHack as primary.
 4. Repurpose the same repo/demo for Splunk Agentic Ops and Google Rapid Agent if eligible.
 5. Post X launch thread with screenshot.
@@ -131,6 +131,7 @@ The result is a dashboard and exportable audit JSON that answers the questions e
 
 - Public repo: https://github.com/Bortlesboat/x402-insights
 - Public demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
+- Public hosted video: https://youtu.be/De8c_IgCueU
 - Public demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4
 - Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
 - Splunk investigation pack: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack

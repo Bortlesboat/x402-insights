@@ -1,6 +1,13 @@
 # AgentOps Ledger Video Hosting Package
 
-Use this package to turn the captioned GitHub release MP4 into a Devpost-compatible YouTube, Vimeo, or Youku URL for Splunk Agentic Ops and follow-on hackathon submissions.
+This package documents the Devpost-compatible YouTube upload for Splunk Agentic Ops and follow-on hackathon submissions.
+
+## Hosted Video
+
+- Public YouTube URL: https://youtu.be/De8c_IgCueU
+- Title: `AgentOps Ledger: Enterprise Agent Flight Recorder`
+- Duration: 46 seconds
+- Public no-login verification: YouTube oEmbed returns the expected title.
 
 ## Source Asset
 
@@ -66,27 +73,32 @@ If the host requires regeneration, open `docs/agentops-ledger-video-thumbnail.ht
 
 ## Upload Checklist
 
-- [ ] Upload the captioned MP4 to YouTube, Vimeo, or Youku.
-- [ ] Set the title to `AgentOps Ledger: Enterprise Agent Flight Recorder`.
-- [ ] Paste the full description above.
+- [x] Upload the captioned MP4 to YouTube, Vimeo, or Youku.
+- [x] Set the title to `AgentOps Ledger: Enterprise Agent Flight Recorder`.
+- [x] Paste the full description above.
 - [ ] Add the tags above.
-- [ ] Set the thumbnail to `agentops-ledger-video-thumbnail.png`.
-- [ ] Confirm captions are visible in the uploaded playback.
-- [ ] Copy the final hosted video URL.
+- [x] Set the thumbnail to `agentops-ledger-video-thumbnail.png`.
+- [x] Copy the final hosted video URL: https://youtu.be/De8c_IgCueU.
+- [x] Record the hosted video URL in https://github.com/Bortlesboat/x402-insights/issues/10.
 - [ ] Add the hosted video URL to Splunk Agentic Ops Devpost.
-- [ ] Record the hosted video URL in https://github.com/Bortlesboat/x402-insights/issues/10.
 
 ## Devpost Video Field
 
-Paste only the final YouTube, Vimeo, or Youku URL into Devpost. Keep the GitHub release MP4 as backup evidence, but do not rely on it for Splunk Agentic Ops because Devpost asks for a video hosted on YouTube, Vimeo, or Youku.
+Paste this URL into Devpost:
+
+```text
+https://youtu.be/De8c_IgCueU
+```
+
+Keep the GitHub release MP4 as backup evidence, but do not rely on it for Splunk Agentic Ops because Devpost asks for a video hosted on YouTube, Vimeo, or Youku.
 
 ## Splunk Agentic Ops Companion Links
 
 - Project URL: https://bortlesboat.github.io/x402-insights/
+- Public video: https://youtu.be/De8c_IgCueU
 - Public repository: https://github.com/Bortlesboat/x402-insights
 - Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 - Architecture diagram: https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md
 - Splunk HEC adapter: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec
 - Splunk indexed proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
 - Public submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
-
