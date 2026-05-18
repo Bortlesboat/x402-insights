@@ -14,6 +14,11 @@ const splunkSubmission = await readFile(
   new URL("../docs/hackathon/splunk-agentic-ops-submission.md", import.meta.url),
   "utf8",
 );
+const lablabSubmission = await readFile(
+  new URL("../docs/hackathon/techex-lablab-submission.md", import.meta.url),
+  "utf8",
+);
+const lablabSlides = await readFile(new URL("../docs/hackathon/techex-lablab-slides.html", import.meta.url), "utf8");
 const videoHosting = await readFile(new URL("../docs/hackathon/video-hosting.md", import.meta.url), "utf8");
 const thumbnailSource = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.html", import.meta.url), "utf8");
 const thumbnailPng = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.png", import.meta.url));
@@ -35,6 +40,8 @@ const splunkMcpToolMapUrl =
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md";
 const hostedVideoUrl = "https://youtu.be/De8c_IgCueU";
 const personalPortfolioUrl = "https://bortlesboat.github.io/";
+const lablabSubmissionUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md";
+const lablabSlidesUrl = "https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -72,6 +79,8 @@ const requiredSnippets = [
   videoHostingUrl,
   investigationPackUrl,
   splunkMcpToolMapUrl,
+  lablabSubmissionUrl,
+  lablabSlidesUrl,
   hostedVideoUrl,
 ];
 
@@ -110,6 +119,8 @@ assert.doesNotMatch(llms, /C:[/\\]Users/i, "llms.txt must not expose local Windo
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
 assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
 assert.doesNotMatch(splunkSubmission, /C:[/\\]Users/i, "Splunk submission packet must not expose local Windows paths");
+assert.doesNotMatch(lablabSubmission, /C:[/\\]Users/i, "TechEx/lablab submission packet must not expose local Windows paths");
+assert.doesNotMatch(lablabSlides, /C:[/\\]Users/i, "TechEx/lablab slide page must not expose local Windows paths");
 assert.doesNotMatch(videoHosting, /C:[/\\]Users/i, "video-hosting package must not expose local Windows paths");
 assert.doesNotMatch(thumbnailSource, /C:[/\\]Users/i, "thumbnail source must not expose local Windows paths");
 
@@ -179,6 +190,8 @@ const discoveryRequiredSnippets = [
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
   "https://youtu.be/De8c_IgCueU",
   `Personal portfolio: ${personalPortfolioUrl}`,
+  lablabSubmissionUrl,
+  lablabSlidesUrl,
   "No prize or judging outcome is claimed",
 ];
 
@@ -203,9 +216,19 @@ for (const url of [
 assert.equal(judgeIndex.project.name, "AgentOps Ledger", "judge index should name AgentOps Ledger");
 assert.equal(judgeIndex.project.status.goalComplete, false, "judge index must keep goalComplete false");
 assert.equal(judgeIndex.project.status.splunkDevpostSubmitted, false, "judge index must not claim Splunk Devpost submission");
+assert.equal(judgeIndex.project.status.lablabTechexSubmitted, false, "judge index must not claim lablab/TechEx submission");
 assert.equal(judgeIndex.project.status.socialLaunchPosted, false, "judge index must not claim social posting");
 assert.equal(judgeIndex.project.status.prizeOutcomeClaimed, false, "judge index must not claim an outcome");
-for (const url of [launchPageUrl, hostedVideoUrl, trackerUrl, splunkSubmissionUrl, splunkMcpToolMapUrl, personalPortfolioUrl]) {
+for (const url of [
+  launchPageUrl,
+  hostedVideoUrl,
+  trackerUrl,
+  splunkSubmissionUrl,
+  splunkMcpToolMapUrl,
+  personalPortfolioUrl,
+  lablabSubmissionUrl,
+  lablabSlidesUrl,
+]) {
   assert.ok(Object.values(judgeIndex.links).includes(url), `judge index links missing ${url}`);
 }
 assert.match(launchPage, /llms\.txt/, "launch page must link llms.txt");
@@ -247,6 +270,56 @@ for (const snippet of splunkSubmissionRequiredSnippets) {
     splunkSubmission,
     new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
     `Splunk submission packet missing ${snippet}`,
+  );
+}
+
+const lablabSubmissionRequiredSnippets = [
+  "TechEx/lablab Transforming Enterprise Through AI Submission Packet",
+  "https://lablab.ai/ai-hackathons/techex-intelligent-enterprise-solutions-hackathon",
+  "May 11-19, 2026",
+  "$10,000 prize pool",
+  "Track 1: Agent Security & AI Governance",
+  "B2B FinOps & Compliance",
+  "Project Title",
+  "Short Description",
+  "Long Description",
+  "Technology & Category Tags",
+  "Cover Image",
+  "Video Presentation",
+  "Slide Presentation",
+  "Public GitHub Repository",
+  "Application URL",
+  hostedVideoUrl,
+  lablabSlidesUrl,
+  "No lablab submission proof is claimed yet",
+  "No Gemini, Veea Lobster Trap, or lablab platform execution proof is claimed",
+  "No prize or judging outcome is claimed",
+];
+
+for (const snippet of lablabSubmissionRequiredSnippets) {
+  assert.match(
+    lablabSubmission,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `TechEx/lablab submission packet missing ${snippet}`,
+  );
+}
+
+const lablabSlidesRequiredSnippets = [
+  "AgentOps Ledger",
+  "TechEx / lablab",
+  "Enterprise-agent audit trail",
+  "x402 payment telemetry",
+  "Splunk-ready evidence",
+  "No lablab submission proof is claimed yet",
+  hostedVideoUrl,
+  lablabSubmissionUrl,
+];
+
+for (const snippet of lablabSlidesRequiredSnippets) {
+  assert.match(
+    lablabSlides,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `TechEx/lablab slide page missing ${snippet}`,
   );
 }
 

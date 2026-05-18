@@ -10,6 +10,8 @@ Public launch page: https://bortlesboat.github.io/x402-insights/launch.html
 Hosted video: https://youtu.be/De8c_IgCueU
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
 Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
+TechEx/lablab submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md
+TechEx/lablab slide presentation: https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html
 Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
 Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 AI/judge discovery: https://bortlesboat.github.io/x402-insights/llms.txt
@@ -216,6 +218,7 @@ splunk investigation pack test passed
 
 - **NandaHack:** trust and operations infrastructure for enterprise agents.
 - **Splunk Agentic Ops:** agent-run telemetry exported through HEC into ops/security workflows.
+- **TechEx/lablab Transforming Enterprise Through AI:** agent governance plus B2B FinOps audit trails for x402 payment telemetry.
 - **Google Rapid Agent:** MCP-style tool observability for Gemini/agent workflows.
 - **UiPath AgentHack:** human-in-the-loop audit layer around enterprise agent orchestration.
 
