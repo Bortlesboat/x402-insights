@@ -5,12 +5,16 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "npm run build && node test-sdk.mjs"
   },
   "keywords": ["x402", "agent", "observability", "cost-tracking"],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Bortlesboat/x402-insights"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.0"
   }
 }

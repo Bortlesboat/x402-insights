@@ -1,10 +1,124 @@
-# x402-insights
+# AgentOps Ledger
 
-See what your agent is spending — in real time.
+Flight recorder for enterprise agents. Record every tool call, approval gate, retry, error, payment, and final outcome in one local audit trail.
 
-![x402-insights dashboard](docs/dashboard.png)
+AgentOps Ledger extends the original `x402-insights` spend observability project into a broader operations console for autonomous agents. The goal is simple: when an agent touches real systems, teams should be able to inspect exactly what happened.
 
-## One-line install
+![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
+
+## What It Shows
+
+- Recent agent runs with status, spend, events, approvals, errors, and duration
+- Run timelines with tool calls, human approvals, retries, payments, and final outcome
+- Risk flags for errors, retries, missing approvals, and unfinished runs
+- Spend by endpoint and by agent
+- Exportable audit JSON for a selected run
+
+## Quick Start
+
+```powershell
+cd server
+npm install
+npm run start
+```
+
+In another terminal:
+
+```powershell
+cd server
+npm run seed
+```
+
+Open:
+
+```text
+http://localhost:4000
+```
+
+## SDK Example
+
+```ts
+import {
+  configure,
+  startRun,
+  trackToolCall,
+  trackApproval,
+  trackPayment,
+  finishRun,
+} from "x402-insights";
+
+configure({
+  baseUrl: "http://localhost:4000",
+  apiKey: "dev-key",
+  defaultSource: "vendor-risk-demo",
+  defaultEnvironment: "dev",
+});
+
+const run_id = await startRun({
+  agent: "vendor-risk-agent",
+  workflow: "vendor-risk-review",
+});
+
+await trackToolCall({
+  run_id,
+  agent: "vendor-risk-agent",
+  workflow: "vendor-risk-review",
+  step_name: "search_vendor_records",
+  tool_name: "mcp.elastic.search",
+  endpoint: "elastic://vendors/_search",
+  fn: async () => searchVendorRecords(),
+});
+
+await trackApproval({
+  run_id,
+  agent: "vendor-risk-agent",
+  workflow: "vendor-risk-review",
+  step_name: "approve_paid_enrichment",
+  approval_status: "approved",
+});
+
+await trackPayment({
+  run_id,
+  agent: "vendor-risk-agent",
+  workflow: "vendor-risk-review",
+  endpoint: "x402://vendor-enrichment",
+  provider: "base-sepolia/exact",
+  phase: "settle",
+  cost: 0.012,
+  currency: "USDC",
+});
+
+await finishRun({
+  run_id,
+  agent: "vendor-risk-agent",
+  workflow: "vendor-risk-review",
+  status: "success",
+  summary: "Vendor cleared after records search, approval, and paid enrichment.",
+});
+```
+
+## API
+
+The server accepts append-only events at:
+
+```text
+POST /events
+```
+
+Dashboard APIs:
+
+```text
+GET /api/runs
+GET /api/runs/:run_id
+GET /api/runs/:run_id/export
+GET /api/overview
+GET /api/by-endpoint
+GET /api/by-agent
+```
+
+## x402 Payment Observability
+
+The original x402 instrumentation still works. `trackX402()` emits payment events, and the facilitator adapter can attach to x402 facilitator lifecycle hooks.
 
 ```ts
 import { attachInsights } from "@x402-insights/facilitator";
@@ -14,100 +128,45 @@ attachInsights(facilitator, {
   apiKey: "dev-key",
   source: "my-facilitator",
 });
-// That's it. Every verify and settle now emits spend events.
 ```
 
-## What you get
+Every verify and settle hook can be logged into the same ledger as normal agent tool calls and approvals.
 
-- **Spend by endpoint** — which API calls cost the most
-- **Retry waste** — how much you're spending on failed retries
-- **Verify vs settle latency** — see that ~95% of facilitator time is settlement, not verification
-- **Error rate** — which endpoints are failing and how much that costs
-- **Live dashboard** — auto-refreshing, filterable by environment (testnet / dev)
+## Project Structure
 
-## Tested on real traffic
-
-30 Base Sepolia transactions through a live x402 facilitator. Not simulated.
-
-Biggest finding: settle latency (~2,000ms) dominates verify (~95ms) by 20:1. If you're optimizing x402 flows, the bottleneck is `transferWithAuthorization`, not RPC reads or signature checks.
-
-## Quick start
-
-```bash
-# Start the dashboard + event ingestion server
-cd server && npm install && node server.js
-# http://localhost:4000
-
-# Seed demo data (optional)
-node seed.js
-```
-
-## Project structure
-
-```
-sdk/                        Core SDK — trackX402() wrapper for any x402 call
-adapters/facilitator-x402/  Drop-in adapter for x402Facilitator hooks (6 lifecycle hooks)
+```text
+sdk/                        TypeScript SDK
+adapters/facilitator-x402/  x402 facilitator adapter
 server/                     Express + SQLite ingestion API + dashboard
-examples/                   Reference integrations (require x402 workspace)
+examples/                   Reference integrations
+docs/hackathon/             Submission copy and demo script
 ```
 
-## SDK (generic wrapper)
+## Verification
 
-For any x402 call, not just facilitators:
+```powershell
+cd sdk
+npm install
+npm test
 
-```ts
-import { configure, trackX402 } from "x402-insights";
-
-configure({ baseUrl: "http://localhost:4000", apiKey: "dev-key" });
-
-const result = await trackX402({
-  agent: "my-agent",
-  workflow: "search",
-  endpoint: "embed",
-  cost: 0.0001,
-  fn: () => callEndpoint(),
-});
+cd ../server
+npm install
+npm test
 ```
 
-## Facilitator adapter
+Expected:
 
-Hooks into the 6 lifecycle events on any `x402Facilitator` instance:
-
-| Hook | Phase | What it captures |
-|------|-------|-----------------|
-| `onBeforeVerify` | verify | Start timer |
-| `onAfterVerify` | verify | Latency, valid/invalid, endpoint |
-| `onVerifyFailure` | verify | Error details |
-| `onBeforeSettle` | settle | Start timer |
-| `onAfterSettle` | settle | Latency, cost (from `requirements.amount`), tx result |
-| `onSettleFailure` | settle | Error, cost of failed settlement |
-
-## Leaderboard tracker
-
-`x402_leaderboard_tracker.py` scrapes x402scan's public tRPC endpoint daily and stores snapshots in SQLite (`x402_leaderboard.db`).
-
-**Tracks per entry:** merchant, origin, facilitator, txn count, volume, unique buyers, chain.
-
-**Day-over-day diffs:** new entrants, dropoffs, volume movers (>20% change), rank changes.
-
-```bash
-# Fetch latest snapshot
-python x402_leaderboard_tracker.py
-
-# View last snapshot without fetching
-python x402_leaderboard_tracker.py --report
+```text
+sdk smoke test passed
+server smoke test passed
 ```
 
-Runs on a daily cron at 8AM.
+## Hackathon Positioning
 
-## v1 scope (intentional)
-
-- Manual cost input on SDK calls (auto-capture from x402 headers is next)
-- Single API key auth
-- SQLite (swap to Postgres when needed)
-- No auth on the dashboard
-
-These are deliberate scope cuts, not missing features.
+- **NandaHack:** trust and operations infrastructure for enterprise agents.
+- **Splunk Agentic Ops:** agent-run telemetry that can be exported into ops/security workflows.
+- **Google Rapid Agent:** MCP-style tool observability for Gemini/agent workflows.
+- **UiPath AgentHack:** human-in-the-loop audit layer around enterprise agent orchestration.
 
 ## License
 
