@@ -6,6 +6,7 @@ AgentOps Ledger extends the original `x402-insights` spend observability project
 
 Hosted demo: https://bortlesboat.github.io/x402-insights/
 Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
+Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
 
 ![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
 

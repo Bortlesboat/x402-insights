@@ -8,6 +8,7 @@ AgentOps Ledger
 
 - Repository: https://github.com/Bortlesboat/x402-insights
 - Hosted case study: https://bortlesboat.github.io/x402-insights/case-study.html
+- Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
 - Pull request: https://github.com/Bortlesboat/x402-insights/pull/1
 - Demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
 - Demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4
