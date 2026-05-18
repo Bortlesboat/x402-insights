@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 
 const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf8");
 const caseStudy = await readFile(new URL("../docs/case-study.html", import.meta.url), "utf8");
+const launchPage = await readFile(new URL("../docs/launch.html", import.meta.url), "utf8");
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const submission = await readFile(new URL("../docs/hackathon/agentops-ledger-submission.md", import.meta.url), "utf8");
 const splunkSubmission = await readFile(
@@ -19,6 +20,7 @@ const investigationSearches = await readFile(
 );
 
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
+const launchPageUrl = "https://bortlesboat.github.io/x402-insights/launch.html";
 const videoHostingUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md";
 const splunkSubmissionUrl =
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md";
@@ -56,7 +58,9 @@ const requiredSnippets = [
   "NandaHack",
   "Splunk Agentic Ops",
   "case-study.html",
+  "launch.html",
   trackerUrl,
+  launchPageUrl,
   splunkSubmissionUrl,
   videoHostingUrl,
   investigationPackUrl,
@@ -76,6 +80,11 @@ assert.match(
 );
 assert.match(
   readme,
+  /https:\/\/bortlesboat\.github\.io\/x402-insights\/launch\.html/,
+  "README must link the public launch page URL",
+);
+assert.match(
+  readme,
   /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/10/,
   "README must link the public submission/outcome tracker",
 );
@@ -87,6 +96,7 @@ assert.match(
 );
 assert.doesNotMatch(html, /C:[/\\]Users/i, "demo page must not expose local Windows paths");
 assert.doesNotMatch(caseStudy, /C:[/\\]Users/i, "case study page must not expose local Windows paths");
+assert.doesNotMatch(launchPage, /C:[/\\]Users/i, "launch page must not expose local Windows paths");
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
 assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
 assert.doesNotMatch(splunkSubmission, /C:[/\\]Users/i, "Splunk submission packet must not expose local Windows paths");
@@ -124,6 +134,31 @@ for (const snippet of caseStudyRequiredSnippets) {
     `case study page missing ${snippet}`,
   );
 }
+
+const launchRequiredSnippets = [
+  "AgentOps Ledger launch",
+  "A flight recorder for enterprise agents",
+  "https://youtu.be/De8c_IgCueU",
+  "Splunk Agentic Ops",
+  "NandaHack submitted",
+  "Devpost not submitted yet",
+  "splunk_run_query",
+  "agentops:run_event",
+  "No prize or judging outcome is claimed",
+  trackerUrl,
+  "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
+  "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
+];
+
+for (const snippet of launchRequiredSnippets) {
+  assert.match(
+    launchPage,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `launch page missing ${snippet}`,
+  );
+}
+
+assert.doesNotMatch(launchPage, /winner|finalist|accepted|award-winning/i, "launch page must not claim outcomes");
 
 assert.match(
   submission,
@@ -218,6 +253,7 @@ assert.ok(thumbnailStats.size > 20000, "thumbnail PNG should be a real rendered 
 const linkTargets = [
   ...html.matchAll(/href="([^"]+)"/g),
   ...caseStudy.matchAll(/href="([^"]+)"/g),
+  ...launchPage.matchAll(/href="([^"]+)"/g),
 ].map((match) => match[1]);
 for (const target of linkTargets.filter((href) => href.startsWith("http"))) {
   assert.match(target, /^https:\/\//, `external link must use https: ${target}`);

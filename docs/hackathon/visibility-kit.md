@@ -130,6 +130,7 @@ The result is a dashboard and exportable audit JSON that answers the questions e
 ## Proof Assets
 
 - Public repo: https://github.com/Bortlesboat/x402-insights
+- Public launch page: https://bortlesboat.github.io/x402-insights/launch.html
 - Public demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
 - Public hosted video: https://youtu.be/De8c_IgCueU
 - Public demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4
