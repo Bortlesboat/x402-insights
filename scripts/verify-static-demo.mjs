@@ -4,6 +4,9 @@ import { readFile } from "node:fs/promises";
 const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf8");
 const caseStudy = await readFile(new URL("../docs/case-study.html", import.meta.url), "utf8");
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
+const submission = await readFile(new URL("../docs/hackathon/agentops-ledger-submission.md", import.meta.url), "utf8");
+
+const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -31,6 +34,7 @@ const requiredSnippets = [
   "NandaHack",
   "Splunk Agentic Ops",
   "case-study.html",
+  trackerUrl,
 ];
 
 for (const snippet of requiredSnippets) {
@@ -43,9 +47,15 @@ assert.match(
   /https:\/\/bortlesboat\.github\.io\/x402-insights\/case-study\.html/,
   "README must link the public case study URL",
 );
+assert.match(
+  readme,
+  /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/10/,
+  "README must link the public submission/outcome tracker",
+);
 assert.doesNotMatch(html, /C:[/\\]Users/i, "demo page must not expose local Windows paths");
 assert.doesNotMatch(caseStudy, /C:[/\\]Users/i, "case study page must not expose local Windows paths");
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
+assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
 
 const titleCount = (html.match(/<h1\b/gi) ?? []).length;
 assert.equal(titleCount, 1, "demo page should have exactly one h1");
@@ -59,9 +69,11 @@ const caseStudyRequiredSnippets = [
   "Splunk HEC proof",
   "NandaHack",
   "Devpost video host",
+  "Outcome tracker",
   "https://github.com/Bortlesboat/x402-insights",
   "https://bortlesboat.github.io/x402-insights/",
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
+  trackerUrl,
 ];
 
 for (const snippet of caseStudyRequiredSnippets) {
@@ -71,6 +83,12 @@ for (const snippet of caseStudyRequiredSnippets) {
     `case study page missing ${snippet}`,
   );
 }
+
+assert.match(
+  submission,
+  /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/10/,
+  "submission draft must link the public submission/outcome tracker",
+);
 
 const linkTargets = [
   ...html.matchAll(/href="([^"]+)"/g),
