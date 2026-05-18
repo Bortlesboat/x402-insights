@@ -10,6 +10,8 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - Hosted demo: https://bortlesboat.github.io/x402-insights/
 - Case study: https://bortlesboat.github.io/x402-insights/case-study.html
 - Personal portfolio: https://bortlesboat.github.io/
+- TechEx/lablab submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md
+- TechEx/lablab slide presentation: https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html
 - Repository: https://github.com/Bortlesboat/x402-insights
 - Hosted video: https://youtu.be/De8c_IgCueU
 - Public tracker: https://github.com/Bortlesboat/x402-insights/issues/10
@@ -23,6 +25,7 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - NandaHack submitted.
 - Hosted demo video is public.
 - Splunk Agentic Ops Devpost is prepared but not submitted yet.
+- TechEx/lablab packet is prepared but not submitted yet.
 - Broader social launch post is not posted yet.
 - No prize or judging outcome is claimed.
 
