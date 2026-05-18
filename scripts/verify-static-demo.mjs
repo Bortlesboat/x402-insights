@@ -34,6 +34,7 @@ const investigationPackUrl = "https://github.com/Bortlesboat/x402-insights/tree/
 const splunkMcpToolMapUrl =
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md";
 const hostedVideoUrl = "https://youtu.be/De8c_IgCueU";
+const personalPortfolioUrl = "https://bortlesboat.github.io/";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -177,6 +178,7 @@ const discoveryRequiredSnippets = [
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
   "https://youtu.be/De8c_IgCueU",
+  `Personal portfolio: ${personalPortfolioUrl}`,
   "No prize or judging outcome is claimed",
 ];
 
@@ -203,7 +205,7 @@ assert.equal(judgeIndex.project.status.goalComplete, false, "judge index must ke
 assert.equal(judgeIndex.project.status.splunkDevpostSubmitted, false, "judge index must not claim Splunk Devpost submission");
 assert.equal(judgeIndex.project.status.socialLaunchPosted, false, "judge index must not claim social posting");
 assert.equal(judgeIndex.project.status.prizeOutcomeClaimed, false, "judge index must not claim an outcome");
-for (const url of [launchPageUrl, hostedVideoUrl, trackerUrl, splunkSubmissionUrl, splunkMcpToolMapUrl]) {
+for (const url of [launchPageUrl, hostedVideoUrl, trackerUrl, splunkSubmissionUrl, splunkMcpToolMapUrl, personalPortfolioUrl]) {
   assert.ok(Object.values(judgeIndex.links).includes(url), `judge index links missing ${url}`);
 }
 assert.match(launchPage, /llms\.txt/, "launch page must link llms.txt");
