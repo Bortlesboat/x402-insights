@@ -9,6 +9,7 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - Launch page: https://bortlesboat.github.io/x402-insights/launch.html
 - Hosted demo: https://bortlesboat.github.io/x402-insights/
 - Case study: https://bortlesboat.github.io/x402-insights/case-study.html
+- Personal portfolio: https://bortlesboat.github.io/
 - Repository: https://github.com/Bortlesboat/x402-insights
 - Hosted video: https://youtu.be/De8c_IgCueU
 - Public tracker: https://github.com/Bortlesboat/x402-insights/issues/10
