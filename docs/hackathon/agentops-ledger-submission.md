@@ -93,7 +93,8 @@ AgentOps Ledger complements enterprise automation by showing human approval gate
 
 ## Screenshot Checklist
 
-- Dashboard with recent runs
+- Dashboard with recent runs: `docs/agentops-ledger-dashboard.png`
+- Mobile dashboard proof: `docs/agentops-ledger-mobile.png`
 - Selected blocked run timeline
 - Successful run with payment event
 - Audit JSON export
