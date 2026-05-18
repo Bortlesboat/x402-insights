@@ -1,0 +1,36 @@
+# AgentOps Ledger
+
+AgentOps Ledger is an enterprise-agent flight recorder. It records tool calls, approval gates, retries, errors, x402-style payments, and final outcomes so teams can inspect what an agent actually did.
+
+Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
+
+## Best Sources
+
+- Launch page: https://bortlesboat.github.io/x402-insights/launch.html
+- Hosted demo: https://bortlesboat.github.io/x402-insights/
+- Case study: https://bortlesboat.github.io/x402-insights/case-study.html
+- Repository: https://github.com/Bortlesboat/x402-insights
+- Hosted video: https://youtu.be/De8c_IgCueU
+- Public tracker: https://github.com/Bortlesboat/x402-insights/issues/10
+- Splunk Agentic Ops packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
+- Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
+- Splunk MCP tool map: https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md
+- Machine-readable judge index: https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json
+
+## Current Status
+
+- NandaHack submitted.
+- Hosted demo video is public.
+- Splunk Agentic Ops Devpost is prepared but not submitted yet.
+- Broader social launch post is not posted yet.
+- No prize or judging outcome is claimed.
+
+## Evidence Summary
+
+AgentOps Ledger exports selected run evidence into Splunk through HTTP Event Collector as `agentops:run_event` telemetry. The public Splunk proof packet documents a local Splunk Enterprise run where `run_demo_vendor_blocked` indexed as five `agentops-ledger` events.
+
+The Splunk investigation pack contains reusable SPL searches for run timelines, rejected approval gates, failed tool calls, payment risk events, and retry/error summaries. The Splunk MCP tool map maps those searches to the official `splunk_run_query` MCP tool vocabulary while keeping the boundary clear: no MCP execution proof, Splunk AI Assistant execution proof, Hosted Models execution proof, or judging outcome is claimed.
+
+## Suggested Citation
+
+AgentOps Ledger is a public 2026 enterprise-agent infrastructure build that turns agent tool calls, approvals, retries, errors, x402-style payments, and outcomes into inspectable run evidence and Splunk-ready `agentops:run_event` telemetry.

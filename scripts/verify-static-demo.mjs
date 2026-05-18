@@ -4,6 +4,10 @@ import { readFile, stat } from "node:fs/promises";
 const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf8");
 const caseStudy = await readFile(new URL("../docs/case-study.html", import.meta.url), "utf8");
 const launchPage = await readFile(new URL("../docs/launch.html", import.meta.url), "utf8");
+const robots = await readFile(new URL("../docs/robots.txt", import.meta.url), "utf8");
+const sitemap = await readFile(new URL("../docs/sitemap.xml", import.meta.url), "utf8");
+const llms = await readFile(new URL("../docs/llms.txt", import.meta.url), "utf8");
+const judgeIndex = JSON.parse(await readFile(new URL("../docs/hackathon/judge-index.json", import.meta.url), "utf8"));
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const submission = await readFile(new URL("../docs/hackathon/agentops-ledger-submission.md", import.meta.url), "utf8");
 const splunkSubmission = await readFile(
@@ -21,6 +25,8 @@ const investigationSearches = await readFile(
 
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
 const launchPageUrl = "https://bortlesboat.github.io/x402-insights/launch.html";
+const llmsUrl = "https://bortlesboat.github.io/x402-insights/llms.txt";
+const sitemapUrl = "https://bortlesboat.github.io/x402-insights/sitemap.xml";
 const videoHostingUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md";
 const splunkSubmissionUrl =
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md";
@@ -97,6 +103,9 @@ assert.match(
 assert.doesNotMatch(html, /C:[/\\]Users/i, "demo page must not expose local Windows paths");
 assert.doesNotMatch(caseStudy, /C:[/\\]Users/i, "case study page must not expose local Windows paths");
 assert.doesNotMatch(launchPage, /C:[/\\]Users/i, "launch page must not expose local Windows paths");
+assert.doesNotMatch(robots, /C:[/\\]Users/i, "robots.txt must not expose local Windows paths");
+assert.doesNotMatch(sitemap, /C:[/\\]Users/i, "sitemap.xml must not expose local Windows paths");
+assert.doesNotMatch(llms, /C:[/\\]Users/i, "llms.txt must not expose local Windows paths");
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
 assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
 assert.doesNotMatch(splunkSubmission, /C:[/\\]Users/i, "Splunk submission packet must not expose local Windows paths");
@@ -159,6 +168,46 @@ for (const snippet of launchRequiredSnippets) {
 }
 
 assert.doesNotMatch(launchPage, /winner|finalist|accepted|award-winning/i, "launch page must not claim outcomes");
+
+const discoveryRequiredSnippets = [
+  "AgentOps Ledger",
+  "enterprise-agent flight recorder",
+  "https://bortlesboat.github.io/x402-insights/launch.html",
+  "https://bortlesboat.github.io/x402-insights/case-study.html",
+  "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
+  "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
+  "https://youtu.be/De8c_IgCueU",
+  "No prize or judging outcome is claimed",
+];
+
+for (const snippet of discoveryRequiredSnippets) {
+  assert.match(llms, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"), `llms.txt missing ${snippet}`);
+}
+
+for (const bot of ["GPTBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "anthropic-ai", "Google-Extended", "Bingbot"]) {
+  assert.match(robots, new RegExp(`User-agent: ${bot}[\\s\\S]*?Allow: /`, "i"), `robots.txt must allow ${bot}`);
+}
+assert.match(robots, new RegExp(`Sitemap: ${sitemapUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`), "robots.txt must link sitemap");
+
+for (const url of [
+  "https://bortlesboat.github.io/x402-insights/",
+  launchPageUrl,
+  "https://bortlesboat.github.io/x402-insights/case-study.html",
+  llmsUrl,
+]) {
+  assert.match(sitemap, new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `sitemap missing ${url}`);
+}
+
+assert.equal(judgeIndex.project.name, "AgentOps Ledger", "judge index should name AgentOps Ledger");
+assert.equal(judgeIndex.project.status.goalComplete, false, "judge index must keep goalComplete false");
+assert.equal(judgeIndex.project.status.splunkDevpostSubmitted, false, "judge index must not claim Splunk Devpost submission");
+assert.equal(judgeIndex.project.status.socialLaunchPosted, false, "judge index must not claim social posting");
+assert.equal(judgeIndex.project.status.prizeOutcomeClaimed, false, "judge index must not claim an outcome");
+for (const url of [launchPageUrl, hostedVideoUrl, trackerUrl, splunkSubmissionUrl, splunkMcpToolMapUrl]) {
+  assert.ok(Object.values(judgeIndex.links).includes(url), `judge index links missing ${url}`);
+}
+assert.match(launchPage, /llms\.txt/, "launch page must link llms.txt");
+assert.match(launchPage, /judge-index\.json/, "launch page must link the machine-readable judge index");
 
 assert.match(
   submission,
