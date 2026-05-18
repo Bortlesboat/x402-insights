@@ -20,6 +20,8 @@ const requiredSnippets = [
   "ARCHITECTURE.md",
   "agentops-ledger-demo-46s.mp4",
   "adapters/splunk-hec",
+  "docs/hackathon/splunk-hec-proof.md",
+  "Indexed Splunk proof",
   "startRun",
   "trackToolCall",
   "trackApproval",

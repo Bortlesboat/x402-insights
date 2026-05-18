@@ -11,6 +11,7 @@ AgentOps Ledger
 - Demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
 - Demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4
 - Architecture: https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md
+- Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
 
 ## One-Liner
 
@@ -89,7 +90,7 @@ AgentOps Ledger is practical trust infrastructure for enterprise agents. It supp
 
 ## Splunk Agentic Ops Framing
 
-AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk.
+AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index.
 
 ## Google Rapid Agent Framing
 
