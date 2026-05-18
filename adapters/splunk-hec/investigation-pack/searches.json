@@ -1,0 +1,47 @@
+[
+  {
+    "id": "run-timeline-by-run-id",
+    "title": "Run timeline by run_id",
+    "purpose": "Inspect one agent run in execution order, including tool calls, approvals, payments, retries, errors, and final status.",
+    "spl": "search index=agentops sourcetype=agentops:run_event source=agentops-ledger run_id=\"$run_id$\" | sort 0 _time | table _time run_id agent workflow event_type step_name tool_name approval_status status cost currency latency_ms error",
+    "ai_assistant_prompt": "Using sourcetype=agentops:run_event, explain the timeline for run_id=$run_id$. Call out tool calls, approval gates, payment events, retries, errors, and the final outcome.",
+    "mcp_prompt": "Search Splunk for sourcetype=agentops:run_event and run_id=$run_id$. Summarize the ordered run timeline and identify any risky or human-in-the-loop events.",
+    "expected_fields": ["_time", "run_id", "event_type", "step_name", "tool_name", "approval_status", "status", "cost", "error"]
+  },
+  {
+    "id": "rejected-approval-gates",
+    "title": "Rejected approval gates",
+    "purpose": "Find runs where a human approval gate rejected or blocked an agent action.",
+    "spl": "search index=agentops sourcetype=agentops:run_event source=agentops-ledger event_type=approval (approval_status=rejected OR approval_status=blocked) | stats latest(_time) as last_seen values(agent) as agents values(workflow) as workflows values(step_name) as steps values(error) as errors by run_id approval_status | sort - last_seen",
+    "ai_assistant_prompt": "Using sourcetype=agentops:run_event, summarize rejected approvals. Group by run_id and approval_status, explain what step was blocked, and list follow-up questions for the operator.",
+    "mcp_prompt": "Search Splunk for sourcetype=agentops:run_event approval events with rejected or blocked approval_status. Return the affected run_id values and a short incident-review summary.",
+    "expected_fields": ["run_id", "approval_status", "steps", "agents", "workflows", "errors"]
+  },
+  {
+    "id": "failed-tool-calls-by-tool",
+    "title": "Failed tool calls by tool",
+    "purpose": "Rank tools by failed calls so platform teams can see which integrations make agent runs fragile.",
+    "spl": "search index=agentops sourcetype=agentops:run_event source=agentops-ledger event_type=tool_call status=error | stats count as failures dc(run_id) as affected_runs values(error) as sample_errors by tool_name endpoint | sort - failures",
+    "ai_assistant_prompt": "Using sourcetype=agentops:run_event, identify failed agent runs caused by tool_call errors. Rank tools by failure count and describe the likely operational impact.",
+    "mcp_prompt": "Search Splunk for sourcetype=agentops:run_event tool_call events with status=error. Group results by tool_name and endpoint, then summarize likely remediation steps.",
+    "expected_fields": ["tool_name", "endpoint", "failures", "affected_runs", "sample_errors"]
+  },
+  {
+    "id": "payment-risk-events",
+    "title": "Payment risk events",
+    "purpose": "Review x402-style payment activity, blocked payments, and spend-bearing agent actions.",
+    "spl": "search index=agentops sourcetype=agentops:run_event source=agentops-ledger (event_type=payment OR cost>0 OR endpoint=\"x402://*\") | eval risk=case(status=\"error\",\"payment_failed\", approval_status=\"rejected\",\"payment_blocked\", cost>0,\"spend_recorded\", true(),\"review\") | stats sum(cost) as total_cost values(currency) as currencies values(endpoint) as endpoints values(status) as statuses values(approval_status) as approval_states values(risk) as risks by run_id agent workflow | sort - total_cost",
+    "ai_assistant_prompt": "Using sourcetype=agentops:run_event, summarize blocked payments and spend-bearing events. Highlight total cost, approval state, failed payment events, and any run that needs finance or security review.",
+    "mcp_prompt": "Search Splunk for sourcetype=agentops:run_event payment events and events with cost greater than zero. Summarize spend, blocked payments, and approval context by run_id.",
+    "expected_fields": ["run_id", "agent", "workflow", "total_cost", "currencies", "endpoints", "statuses", "approval_states", "risks"]
+  },
+  {
+    "id": "agent-run-error-and-retry-summary",
+    "title": "Agent run error and retry summary",
+    "purpose": "Find runs with errors or retry behavior so SREs can triage instability before agents touch production workflows.",
+    "spl": "search index=agentops sourcetype=agentops:run_event source=agentops-ledger (status=error OR is_retry=1 OR retry_count>0) | stats count as risky_events sum(is_retry) as retry_events max(retry_count) as max_retry_count values(error) as errors values(tool_name) as tools values(endpoint) as endpoints by run_id agent workflow run_status | sort - risky_events",
+    "ai_assistant_prompt": "Using sourcetype=agentops:run_event, summarize failed agent runs and retry-heavy runs. Explain which tools or endpoints appear unstable and which runs deserve incident review.",
+    "mcp_prompt": "Search Splunk for sourcetype=agentops:run_event events where status=error, is_retry=1, or retry_count>0. Group by run_id and return a concise SRE triage summary.",
+    "expected_fields": ["run_id", "agent", "workflow", "run_status", "risky_events", "retry_events", "max_retry_count", "errors", "tools", "endpoints"]
+  }
+]

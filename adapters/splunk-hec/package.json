@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "export": "node export-run-to-hec.mjs",
-    "test": "node test-export-run-to-hec.mjs"
+    "test": "node test-export-run-to-hec.mjs && node test-investigation-pack.mjs",
+    "test:investigation-pack": "node test-investigation-pack.mjs"
   }
 }

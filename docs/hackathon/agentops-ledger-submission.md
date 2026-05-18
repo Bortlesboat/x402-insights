@@ -16,6 +16,7 @@ AgentOps Ledger
 - Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 - Architecture: https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md
 - Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
+- Splunk investigation pack: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack
 
 ## One-Liner
 
@@ -94,7 +95,7 @@ AgentOps Ledger is practical trust infrastructure for enterprise agents. It supp
 
 ## Splunk Agentic Ops Framing
 
-AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index.
+AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index. The Splunk investigation pack adds reusable SPL searches and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over the indexed events.
 
 ## Google Rapid Agent Framing
 
@@ -120,6 +121,7 @@ AgentOps Ledger complements enterprise automation by showing human approval gate
 - SDK smoke test
 - Server smoke test
 - Splunk HEC adapter smoke test
+- Splunk investigation pack verifier
 - Root architecture diagram
 - README quick start
 - Demo video or screen recording

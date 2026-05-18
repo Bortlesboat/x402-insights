@@ -9,9 +9,14 @@ const videoHosting = await readFile(new URL("../docs/hackathon/video-hosting.md"
 const thumbnailSource = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.html", import.meta.url), "utf8");
 const thumbnailPng = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.png", import.meta.url));
 const thumbnailStats = await stat(new URL("../docs/agentops-ledger-video-thumbnail.png", import.meta.url));
+const investigationSearches = await readFile(
+  new URL("../adapters/splunk-hec/investigation-pack/searches.json", import.meta.url),
+  "utf8",
+);
 
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
 const videoHostingUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md";
+const investigationPackUrl = "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -30,6 +35,7 @@ const requiredSnippets = [
   "agentops-ledger-demo-46s.mp4",
   "adapters/splunk-hec",
   "docs/hackathon/splunk-hec-proof.md",
+  "adapters/splunk-hec/investigation-pack",
   "docs/hackathon/video-hosting.md",
   "agentops-ledger-video-thumbnail.png",
   "Indexed Splunk proof",
@@ -43,6 +49,7 @@ const requiredSnippets = [
   "case-study.html",
   trackerUrl,
   videoHostingUrl,
+  investigationPackUrl,
 ];
 
 for (const snippet of requiredSnippets) {
@@ -106,6 +113,18 @@ assert.match(
   /https:\/\/github\.com\/Bortlesboat\/x402-insights\/blob\/main\/docs\/hackathon\/video-hosting\.md/,
   "submission draft must link the video-hosting package",
 );
+assert.match(
+  submission,
+  /https:\/\/github\.com\/Bortlesboat\/x402-insights\/tree\/main\/adapters\/splunk-hec\/investigation-pack/,
+  "submission draft must link the Splunk investigation pack",
+);
+
+const parsedInvestigationSearches = JSON.parse(investigationSearches);
+assert.ok(Array.isArray(parsedInvestigationSearches), "investigation searches must be an array");
+assert.ok(parsedInvestigationSearches.length >= 5, "investigation pack should include at least five searches");
+for (const search of parsedInvestigationSearches) {
+  assert.match(search.spl, /sourcetype=agentops:run_event/, `investigation search ${search.id} must target AgentOps sourcetype`);
+}
 
 const videoHostingRequiredSnippets = [
   "AgentOps Ledger Video Hosting Package",
