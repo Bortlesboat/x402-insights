@@ -150,6 +150,8 @@ The live paid route `https://bitcoinsapi.com/api/v1/fees/landscape` returns an x
 
 The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
 
+Proof packet: [docs/hackathon/splunk-hec-proof.md](docs/hackathon/splunk-hec-proof.md)
+
 ```powershell
 $env:AGENTOPS_BASE_URL = "http://localhost:4000"
 $env:AGENTOPS_RUN_ID = "run_demo_vendor_blocked"
