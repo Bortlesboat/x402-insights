@@ -21,6 +21,8 @@ AgentOps Ledger
 - Splunk investigation pack: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack
 - Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 - Splunk MCP tool map: https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md
+- AI/judge discovery: https://bortlesboat.github.io/x402-insights/llms.txt
+- Machine-readable judge index: https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json
 
 ## One-Liner
 

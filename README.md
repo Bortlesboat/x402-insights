@@ -12,6 +12,8 @@ Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/
 Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
 Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
+AI/judge discovery: https://bortlesboat.github.io/x402-insights/llms.txt
+Machine-readable judge index: https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json
 
 ![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
 

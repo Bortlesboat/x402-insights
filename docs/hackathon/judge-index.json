@@ -1,0 +1,45 @@
+{
+  "project": {
+    "name": "AgentOps Ledger",
+    "tagline": "A flight recorder for enterprise agents.",
+    "status": {
+      "nandaHackSubmitted": true,
+      "hostedVideoPublic": true,
+      "splunkDevpostSubmitted": false,
+      "socialLaunchPosted": false,
+      "prizeOutcomeClaimed": false,
+      "goalComplete": false
+    }
+  },
+  "links": {
+    "launchPage": "https://bortlesboat.github.io/x402-insights/launch.html",
+    "hostedDemo": "https://bortlesboat.github.io/x402-insights/",
+    "caseStudy": "https://bortlesboat.github.io/x402-insights/case-study.html",
+    "repository": "https://github.com/Bortlesboat/x402-insights",
+    "hostedVideo": "https://youtu.be/De8c_IgCueU",
+    "tracker": "https://github.com/Bortlesboat/x402-insights/issues/10",
+    "splunkSubmissionPacket": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
+    "splunkHecProof": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
+    "splunkInvestigationPack": "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack",
+    "splunkMcpToolMap": "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
+    "llms": "https://bortlesboat.github.io/x402-insights/llms.txt",
+    "sitemap": "https://bortlesboat.github.io/x402-insights/sitemap.xml"
+  },
+  "splunkEvidence": {
+    "index": "agentops",
+    "source": "agentops-ledger",
+    "sourcetype": "agentops:run_event",
+    "verifiedRunId": "run_demo_vendor_blocked",
+    "verifiedExportedEvents": 5,
+    "mcpToolMapping": "splunk_run_query",
+    "mcpExecutionProofClaimed": false,
+    "aiAssistantExecutionProofClaimed": false,
+    "hostedModelsExecutionProofClaimed": false
+  },
+  "hackathonPositioning": {
+    "primary": "Splunk Agentic Ops - Platform & Developer Experience",
+    "secondary": "NandaHack - Infrastructure Agents",
+    "useCase": "Operational audit trail for enterprise agents that touch tools, approvals, payments, and external systems."
+  },
+  "updatedAt": "2026-05-18"
+}
