@@ -138,6 +138,14 @@ attachInsights(facilitator, {
 
 Every verify and settle hook can be logged into the same ledger as normal agent tool calls and approvals.
 
+### Satoshi API Paid-Call Dogfood
+
+`x402-insights` is also being dogfooded against Satoshi API production x402 telemetry. The local dashboard below shows `prod` / `live` / `24h` observations for Satoshi paid-call endpoints, with `/api/v1/fees/landscape` as the top cost driver and recent events labeled `PROD`.
+
+![Satoshi API paid-call dashboard](docs/satoshi-paid-call-dashboard.png)
+
+The live paid route `https://bitcoinsapi.com/api/v1/fees/landscape` returns an x402 `402 Payment Required` challenge with `x-price-usd: $0.005` and an AgentCash retry command. See [docs/SATOSHI_PAID_CALL_DEMO.md](docs/SATOSHI_PAID_CALL_DEMO.md) for the evidence boundary: dashboard spend is observability telemetry, while source-classified revenue proof lives in Satoshi API's public x402 stats endpoint.
+
 ## Splunk Export
 
 The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
