@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentOps Ledger Case Study | Enterprise Agent Flight Recorder</title>
+    <meta
+      name="description"
+      content="Case study for AgentOps Ledger, a 2026 enterprise-agent infrastructure tool for run evidence, approval gates, x402 payments, audit export, and Splunk-ready telemetry."
+    />
+    <link rel="canonical" href="https://bortlesboat.github.io/x402-insights/case-study.html" />
+    <meta name="theme-color" content="#f5f2ec" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AgentOps Ledger case study" />
+    <meta
+      property="og:description"
+      content="Built for 2026 enterprise-agent hackathons: run timelines, approvals, payments, audit JSON, and Splunk HEC telemetry."
+    />
+    <meta property="og:url" content="https://bortlesboat.github.io/x402-insights/case-study.html" />
+    <meta property="og:image" content="https://bortlesboat.github.io/x402-insights/agentops-ledger-dashboard.png" />
+    <meta property="og:image:alt" content="AgentOps Ledger dashboard showing run timelines, risk flags, and spend evidence" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AgentOps Ledger case study" />
+    <meta
+      name="twitter:description"
+      content="A public case study for enterprise-agent run evidence, approval gates, x402 payments, and Splunk-ready telemetry."
+    />
+    <meta name="twitter:image" content="https://bortlesboat.github.io/x402-insights/agentops-ledger-dashboard.png" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #101418;
+        --muted: #5a626b;
+        --paper: #f5f2ec;
+        --panel: #fffdf8;
+        --line: #d8d2c7;
+        --steel: #2d465c;
+        --green: #2e6b4f;
+        --red: #9f3f36;
+        --gold: #9d742d;
+        --shadow: 0 24px 60px rgba(16, 20, 24, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(45, 70, 92, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(45, 70, 92, 0.06) 1px, transparent 1px),
+          var(--paper);
+        background-size: 44px 44px;
+        color: var(--ink);
+        font-family:
+          ui-sans-serif,
+          "Segoe UI",
+          system-ui,
+          sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 780;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border: 2px solid var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 5px;
+        background: var(--panel);
+      }
+
+      .brand-mark span {
+        display: block;
+        background: var(--steel);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 14px;
+        font-size: 0.92rem;
+      }
+
+      .nav-links a,
+      .button {
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        text-underline-offset: 4px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.75fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+        min-height: calc(100vh - 116px);
+        padding: 34px 0 72px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        margin: 0 0 20px;
+        color: var(--steel);
+        font-size: 0.82rem;
+        font-weight: 780;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 36px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 860px;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 680px;
+        margin: 28px 0 0;
+        color: #30363d;
+        font-size: clamp(1.08rem, 2vw, 1.38rem);
+      }
+
+      .hero-actions,
+      .action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--panel);
+        font-weight: 760;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .evidence-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: clamp(18px, 3vw, 28px);
+      }
+
+      .evidence-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        border-top: 3px solid var(--ink);
+        padding-top: 12px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: clamp(1.45rem, 3vw, 2.1rem);
+        line-height: 1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.58fr) minmax(300px, 0.42fr);
+        gap: 34px;
+        align-items: end;
+        margin-bottom: 32px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2.1rem, 5vw, 4.4rem);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .brief-grid,
+      .proof-grid,
+      .links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .brief,
+      .proof,
+      .link-card {
+        border: 1px solid var(--line);
+        background: rgba(255, 253, 248, 0.82);
+        padding: 22px;
+      }
+
+      .brief h3,
+      .proof h3,
+      .link-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+      }
+
+      .brief p,
+      .proof p,
+      .link-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .proof {
+        border-top: 4px solid var(--steel);
+      }
+
+      .proof.strong {
+        border-top-color: var(--green);
+      }
+
+      .proof.blocked {
+        border-top-color: var(--red);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        gap: 18px;
+        border-top: 1px solid var(--line);
+        padding: 18px 0 4px;
+      }
+
+      .step strong {
+        color: var(--steel);
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .step p {
+        margin: 0;
+      }
+
+      .link-card {
+        display: flex;
+        min-height: 190px;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 22px;
+        text-decoration: none;
+      }
+
+      .link-card span {
+        color: var(--steel);
+        font-size: 0.86rem;
+        font-weight: 780;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .status-note {
+        border-left: 4px solid var(--gold);
+        background: rgba(255, 253, 248, 0.74);
+        color: #383d42;
+        margin: 26px 0 0;
+        padding: 18px 20px;
+      }
+
+      .footer {
+        padding: 40px 0 56px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 860px) {
+        .nav,
+        .hero,
+        .section-head,
+        .step {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .brief-grid,
+        .proof-grid,
+        .links-grid,
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: clamp(3rem, 17vw, 5.6rem);
+        }
+
+        section {
+          padding: 54px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell nav">
+      <a class="brand" href="./" aria-label="AgentOps Ledger home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span>AgentOps Ledger</span>
+      </a>
+      <nav class="nav-links" aria-label="Project links">
+        <a href="./">Demo</a>
+        <a href="https://github.com/Bortlesboat/x402-insights">Repository</a>
+        <a href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">Architecture</a>
+        <a href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md">Splunk HEC proof</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="shell hero">
+        <div>
+          <p class="eyebrow">Built for 2026 enterprise-agent hackathons</p>
+          <h1>AgentOps Ledger case study</h1>
+          <p class="lead">
+            A flight recorder for production-like agents: every tool call, approval gate, retry, error,
+            x402 payment, and final outcome becomes inspectable run evidence.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/Bortlesboat/x402-insights">Open the repository</a>
+            <a class="button secondary" href="https://bortlesboat.github.io/x402-insights/">View hosted demo</a>
+          </div>
+        </div>
+        <aside class="evidence-card" aria-label="Case study evidence">
+          <img src="agentops-ledger-dashboard.png" alt="AgentOps Ledger dashboard with run timelines, risk flags, and spend breakdowns" />
+          <div class="metric-grid">
+            <div class="metric"><strong>3</strong><span>deterministic demo runs</span></div>
+            <div class="metric"><strong>5</strong><span>blocked-run events indexed in Splunk</span></div>
+            <div class="metric"><strong>46s</strong><span>captioned demo asset</span></div>
+            <div class="metric"><strong>1</strong><span>SDK surface for existing agents</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>The problem</h2>
+          <p>
+            Enterprise teams do not need another hidden transcript. They need durable operational evidence
+            before agents can touch paid APIs, internal systems, or approval-gated workflows.
+          </p>
+        </div>
+        <div class="brief-grid">
+          <article class="brief">
+            <h3>Trust gap</h3>
+            <p>Final answers hide the decisions, retries, rejected approvals, and tool behavior that actually create risk.</p>
+          </article>
+          <article class="brief">
+            <h3>Ops gap</h3>
+            <p>Security and platform teams need searchable event streams, not screenshots of a chat window after the fact.</p>
+          </article>
+          <article class="brief">
+            <h3>Spend gap</h3>
+            <p>Agents calling paid APIs need cost attribution tied to the exact run, endpoint, provider, and outcome.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>What shipped</h2>
+          <p>
+            The build turns an agent workflow into a run ledger with dashboard inspection, exportable audit
+            JSON, x402-style payment events, and Splunk HEC telemetry.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <strong>SDK</strong>
+            <p><code>startRun</code>, <code>trackToolCall</code>, <code>trackApproval</code>, <code>trackPayment</code>, and <code>finishRun</code> wrap existing agent code without locking it to a framework.</p>
+          </div>
+          <div class="step">
+            <strong>Ledger</strong>
+            <p>Express and SQLite store append-only events, group them into runs, calculate risk flags, and preserve compatibility with the original x402 event model.</p>
+          </div>
+          <div class="step">
+            <strong>Console</strong>
+            <p>The dashboard shows recent runs, selected timelines, approval/payment/error evidence, spend by endpoint, spend by agent, and audit export.</p>
+          </div>
+          <div class="step">
+            <strong>Telemetry</strong>
+            <p>The Splunk HEC adapter exports a selected run as <code>agentops:run_event</code> records for search, alerting, and incident review.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>Evidence</h2>
+          <p>
+            The credibility layer is intentionally boring: public code, repeatable demo data, tests, release
+            assets, hosted page, and a sanitized Splunk proof packet.
+          </p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof strong">
+            <h3>Public implementation</h3>
+            <p>SDK helpers, server APIs, dashboard, seed data, architecture docs, and release assets are in the public repository.</p>
+          </article>
+          <article class="proof">
+            <h3>Splunk HEC proof</h3>
+            <p>The blocked demo run exported through HEC and appeared in Splunk as five <code>agentops-ledger</code> events.</p>
+          </article>
+          <article class="proof blocked">
+            <h3>Honest status</h3>
+            <p>NandaHack and Splunk submissions are prepared; Devpost still needs a YouTube, Vimeo, or Youku video-host URL.</p>
+          </article>
+        </div>
+        <p class="status-note">
+          Current next gate: upload the captioned MP4 to a Devpost video host, then submit Splunk Agentic Ops.
+          NandaHack can be submitted with the hosted demo, repository, architecture, and release links.
+        </p>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>Hackathon fit</h2>
+          <p>
+            AgentOps Ledger is positioned as infrastructure, not a novelty demo. It gives a stock agent a
+            practical trust, audit, and observability layer.
+          </p>
+        </div>
+        <div class="brief-grid">
+          <article class="brief">
+            <h3>NandaHack</h3>
+            <p>Fits enterprise-agent trust infrastructure across safety, integration, coordination, and production-like evaluation.</p>
+          </article>
+          <article class="brief">
+            <h3>Splunk Agentic Ops</h3>
+            <p>Turns every agent run into Splunk-ready operational telemetry for search, alerting, and investigation.</p>
+          </article>
+          <article class="brief">
+            <h3>Follow-on tracks</h3>
+            <p>Google Rapid Agent and UiPath remain adaptation targets after adding platform-specific runtime integration.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>Judge links</h2>
+          <p>One place to inspect the product, code, architecture, proof, and demo material.</p>
+        </div>
+        <div class="links-grid">
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights">
+            <div>
+              <h3>Repository</h3>
+              <p>Source, SDK, server, dashboard, adapter, docs, and tests.</p>
+            </div>
+            <span>Open repo</span>
+          </a>
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">
+            <div>
+              <h3>Architecture</h3>
+              <p>Data flow from agent SDK through ledger, export API, Splunk HEC, and Splunk AI workflows.</p>
+            </div>
+            <span>Open diagram</span>
+          </a>
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md">
+            <div>
+              <h3>Splunk HEC proof</h3>
+              <p>Sanitized evidence from a local Splunk Enterprise index run.</p>
+            </div>
+            <span>Open proof</span>
+          </a>
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18">
+            <div>
+              <h3>Release</h3>
+              <p>Captioned 46-second demo asset and packaged release notes.</p>
+            </div>
+            <span>Open release</span>
+          </a>
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4">
+            <div>
+              <h3>Demo video</h3>
+              <p>Short product walkthrough for hackathon review.</p>
+            </div>
+            <span>Watch MP4</span>
+          </a>
+          <a class="link-card" href="https://bortlesboat.github.io/x402-insights/">
+            <div>
+              <h3>Hosted demo</h3>
+              <p>Public static demo with dashboard screenshot and submission assets.</p>
+            </div>
+            <span>Open demo</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      AgentOps Ledger is public hackathon infrastructure evidence. Submission outcomes are tracked separately and only claimed after confirmation.
+    </footer>
+  </body>
+</html>
