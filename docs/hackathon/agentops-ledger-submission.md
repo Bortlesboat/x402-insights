@@ -18,6 +18,8 @@ AgentOps Ledger
 - Architecture: https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md
 - Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
 - Splunk investigation pack: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack
+- Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
+- Splunk MCP tool map: https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md
 
 ## One-Liner
 
@@ -96,7 +98,7 @@ AgentOps Ledger is practical trust infrastructure for enterprise agents. It supp
 
 ## Splunk Agentic Ops Framing
 
-AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index. The Splunk investigation pack adds reusable SPL searches and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over the indexed events.
+AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index. The Splunk investigation pack adds reusable SPL searches, `splunk_run_query` MCP tool mapping, and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over the indexed events. The dedicated Splunk submission packet keeps the no-MCP-execution-proof boundary explicit.
 
 ## Google Rapid Agent Framing
 
@@ -123,6 +125,7 @@ AgentOps Ledger complements enterprise automation by showing human approval gate
 - Server smoke test
 - Splunk HEC adapter smoke test
 - Splunk investigation pack verifier
+- Public Splunk Agentic Ops submission packet
 - Root architecture diagram
 - README quick start
 - Hosted Devpost-compatible demo video: https://youtu.be/De8c_IgCueU
