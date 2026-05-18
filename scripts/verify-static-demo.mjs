@@ -29,6 +29,7 @@ const investigationSearches = await readFile(
 );
 
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
+const feedbackIssueUrl = "https://github.com/Bortlesboat/x402-insights/issues/21";
 const launchPageUrl = "https://bortlesboat.github.io/x402-insights/launch.html";
 const llmsUrl = "https://bortlesboat.github.io/x402-insights/llms.txt";
 const sitemapUrl = "https://bortlesboat.github.io/x402-insights/sitemap.xml";
@@ -74,6 +75,7 @@ const requiredSnippets = [
   "case-study.html",
   "launch.html",
   trackerUrl,
+  feedbackIssueUrl,
   launchPageUrl,
   splunkSubmissionUrl,
   videoHostingUrl,
@@ -103,6 +105,11 @@ assert.match(
   readme,
   /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/10/,
   "README must link the public submission/outcome tracker",
+);
+assert.match(
+  readme,
+  /https:\/\/github\.com\/Bortlesboat\/x402-insights\/issues\/21/,
+  "README must link the public feedback issue",
 );
 assert.match(readme, /https:\/\/youtu\.be\/De8c_IgCueU/, "README must link the public hosted video");
 assert.match(
@@ -145,6 +152,7 @@ const caseStudyRequiredSnippets = [
   splunkSubmissionUrl,
   splunkMcpToolMapUrl,
   trackerUrl,
+  feedbackIssueUrl,
   hostedVideoUrl,
 ];
 
@@ -167,6 +175,7 @@ const launchRequiredSnippets = [
   "agentops:run_event",
   "No prize or judging outcome is claimed",
   trackerUrl,
+  feedbackIssueUrl,
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
 ];
@@ -189,6 +198,7 @@ const discoveryRequiredSnippets = [
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
   "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md",
   "https://youtu.be/De8c_IgCueU",
+  feedbackIssueUrl,
   `Personal portfolio: ${personalPortfolioUrl}`,
   lablabSubmissionUrl,
   lablabSlidesUrl,
@@ -223,6 +233,7 @@ for (const url of [
   launchPageUrl,
   hostedVideoUrl,
   trackerUrl,
+  feedbackIssueUrl,
   splunkSubmissionUrl,
   splunkMcpToolMapUrl,
   personalPortfolioUrl,

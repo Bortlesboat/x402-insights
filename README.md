@@ -9,6 +9,7 @@ Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 Public launch page: https://bortlesboat.github.io/x402-insights/launch.html
 Hosted video: https://youtu.be/De8c_IgCueU
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
+Public feedback issue: https://github.com/Bortlesboat/x402-insights/issues/21
 Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 TechEx/lablab submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md
 TechEx/lablab slide presentation: https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html

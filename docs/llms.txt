@@ -15,6 +15,7 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - Repository: https://github.com/Bortlesboat/x402-insights
 - Hosted video: https://youtu.be/De8c_IgCueU
 - Public tracker: https://github.com/Bortlesboat/x402-insights/issues/10
+- Public feedback issue: https://github.com/Bortlesboat/x402-insights/issues/21
 - Splunk Agentic Ops packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 - Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
 - Splunk MCP tool map: https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md
