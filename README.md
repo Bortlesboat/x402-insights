@@ -13,6 +13,9 @@ Public feedback issue: https://github.com/Bortlesboat/x402-insights/issues/21
 Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 TechEx/lablab submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md
 TechEx/lablab slide presentation: https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html
+Microsoft Agent Academy packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-agent-academy-special-ops.md
+Microsoft Graph adapter: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/microsoft-graph
+Microsoft Graph probe evidence: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json
 Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
 Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 AI/judge discovery: https://bortlesboat.github.io/x402-insights/llms.txt
@@ -177,6 +180,20 @@ $env:SPLUNK_INDEX = "agentops"
 
 node adapters/splunk-hec/export-run-to-hec.mjs
 ```
+
+## Microsoft Graph Adapter
+
+The Microsoft Graph adapter opens an Agent Academy Special Ops route by recording a read-only Microsoft Graph API metadata probe as AgentOps Ledger run evidence.
+
+Packet: [docs/hackathon/microsoft-agent-academy-special-ops.md](docs/hackathon/microsoft-agent-academy-special-ops.md)
+Adapter: [adapters/microsoft-graph](adapters/microsoft-graph)
+Evidence JSON: [docs/hackathon/microsoft-graph-metadata-probe.json](docs/hackathon/microsoft-graph-metadata-probe.json)
+
+```powershell
+node adapters/microsoft-graph/graph-metadata-probe.mjs --json
+```
+
+The probe calls `https://graph.microsoft.com/v1.0/$metadata`, emits `run_microsoft_graph_metadata_probe`, and does not use tenant, user, token, or payment data.
 
 The investigation pack includes reusable SPL searches, a `splunk_run_query` MCP tool map, and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over `agentops:run_event` data.
 

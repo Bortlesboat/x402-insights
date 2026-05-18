@@ -8,6 +8,9 @@ const robots = await readFile(new URL("../docs/robots.txt", import.meta.url), "u
 const sitemap = await readFile(new URL("../docs/sitemap.xml", import.meta.url), "utf8");
 const llms = await readFile(new URL("../docs/llms.txt", import.meta.url), "utf8");
 const judgeIndex = JSON.parse(await readFile(new URL("../docs/hackathon/judge-index.json", import.meta.url), "utf8"));
+const graphProbeEvidence = JSON.parse(
+  await readFile(new URL("../docs/hackathon/microsoft-graph-metadata-probe.json", import.meta.url), "utf8"),
+);
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const submission = await readFile(new URL("../docs/hackathon/agentops-ledger-submission.md", import.meta.url), "utf8");
 const splunkSubmission = await readFile(
@@ -18,7 +21,12 @@ const lablabSubmission = await readFile(
   new URL("../docs/hackathon/techex-lablab-submission.md", import.meta.url),
   "utf8",
 );
+const agentAcademySubmission = await readFile(
+  new URL("../docs/hackathon/microsoft-agent-academy-special-ops.md", import.meta.url),
+  "utf8",
+);
 const lablabSlides = await readFile(new URL("../docs/hackathon/techex-lablab-slides.html", import.meta.url), "utf8");
+const microsoftGraphReadme = await readFile(new URL("../adapters/microsoft-graph/README.md", import.meta.url), "utf8");
 const videoHosting = await readFile(new URL("../docs/hackathon/video-hosting.md", import.meta.url), "utf8");
 const thumbnailSource = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.html", import.meta.url), "utf8");
 const thumbnailPng = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.png", import.meta.url));
@@ -43,6 +51,12 @@ const hostedVideoUrl = "https://youtu.be/De8c_IgCueU";
 const personalPortfolioUrl = "https://bortlesboat.github.io/";
 const lablabSubmissionUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md";
 const lablabSlidesUrl = "https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html";
+const agentAcademySubmissionUrl =
+  "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-agent-academy-special-ops.md";
+const microsoftGraphAdapterUrl =
+  "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/microsoft-graph";
+const microsoftGraphProbeEvidenceUrl =
+  "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json";
 
 const requiredSnippets = [
   "AgentOps Ledger",
@@ -83,6 +97,9 @@ const requiredSnippets = [
   splunkMcpToolMapUrl,
   lablabSubmissionUrl,
   lablabSlidesUrl,
+  agentAcademySubmissionUrl,
+  microsoftGraphAdapterUrl,
+  microsoftGraphProbeEvidenceUrl,
   hostedVideoUrl,
 ];
 
@@ -127,7 +144,9 @@ assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windo
 assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
 assert.doesNotMatch(splunkSubmission, /C:[/\\]Users/i, "Splunk submission packet must not expose local Windows paths");
 assert.doesNotMatch(lablabSubmission, /C:[/\\]Users/i, "TechEx/lablab submission packet must not expose local Windows paths");
+assert.doesNotMatch(agentAcademySubmission, /C:[/\\]Users/i, "Agent Academy packet must not expose local Windows paths");
 assert.doesNotMatch(lablabSlides, /C:[/\\]Users/i, "TechEx/lablab slide page must not expose local Windows paths");
+assert.doesNotMatch(microsoftGraphReadme, /C:[/\\]Users/i, "Microsoft Graph adapter README must not expose local Windows paths");
 assert.doesNotMatch(videoHosting, /C:[/\\]Users/i, "video-hosting package must not expose local Windows paths");
 assert.doesNotMatch(thumbnailSource, /C:[/\\]Users/i, "thumbnail source must not expose local Windows paths");
 
@@ -202,6 +221,9 @@ const discoveryRequiredSnippets = [
   `Personal portfolio: ${personalPortfolioUrl}`,
   lablabSubmissionUrl,
   lablabSlidesUrl,
+  agentAcademySubmissionUrl,
+  microsoftGraphAdapterUrl,
+  microsoftGraphProbeEvidenceUrl,
   "No prize or judging outcome is claimed",
 ];
 
@@ -227,6 +249,7 @@ assert.equal(judgeIndex.project.name, "AgentOps Ledger", "judge index should nam
 assert.equal(judgeIndex.project.status.goalComplete, false, "judge index must keep goalComplete false");
 assert.equal(judgeIndex.project.status.splunkDevpostSubmitted, false, "judge index must not claim Splunk Devpost submission");
 assert.equal(judgeIndex.project.status.lablabTechexSubmitted, false, "judge index must not claim lablab/TechEx submission");
+assert.equal(judgeIndex.project.status.agentAcademySubmitted, false, "judge index must not claim Microsoft Agent Academy submission");
 assert.equal(judgeIndex.project.status.socialLaunchPosted, false, "judge index must not claim social posting");
 assert.equal(judgeIndex.project.status.prizeOutcomeClaimed, false, "judge index must not claim an outcome");
 for (const url of [
@@ -239,6 +262,9 @@ for (const url of [
   personalPortfolioUrl,
   lablabSubmissionUrl,
   lablabSlidesUrl,
+  agentAcademySubmissionUrl,
+  microsoftGraphAdapterUrl,
+  microsoftGraphProbeEvidenceUrl,
 ]) {
   assert.ok(Object.values(judgeIndex.links).includes(url), `judge index links missing ${url}`);
 }
@@ -314,6 +340,58 @@ for (const snippet of lablabSubmissionRequiredSnippets) {
     `TechEx/lablab submission packet missing ${snippet}`,
   );
 }
+
+const agentAcademySubmissionRequiredSnippets = [
+  "Microsoft Agent Academy Hackathon",
+  "Special Ops",
+  "May 12",
+  "June 2, 2026",
+  "Microsoft Graph API",
+  "https://graph.microsoft.com/v1.0/$metadata",
+  "agent-academy-special-ops-agent",
+  "microsoft-graph-metadata-probe.json",
+  "Not submitted",
+  "No badge, winner, finalist, or prize outcome is claimed",
+  microsoftGraphAdapterUrl,
+];
+
+for (const snippet of agentAcademySubmissionRequiredSnippets) {
+  assert.match(
+    agentAcademySubmission,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `Agent Academy packet missing ${snippet}`,
+  );
+}
+
+const microsoftGraphReadmeRequiredSnippets = [
+  "Microsoft Graph API",
+  "https://graph.microsoft.com/v1.0/$metadata",
+  "run_microsoft_graph_metadata_probe",
+  "microsoft.graph.metadata",
+  "no tenant, user, or payment data",
+  "node adapters/microsoft-graph/graph-metadata-probe.mjs --json",
+];
+
+for (const snippet of microsoftGraphReadmeRequiredSnippets) {
+  assert.match(
+    microsoftGraphReadme,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `Microsoft Graph adapter README missing ${snippet}`,
+  );
+}
+
+assert.equal(graphProbeEvidence.run_id, "run_microsoft_graph_metadata_probe", "Graph probe evidence must name the probe run");
+assert.equal(graphProbeEvidence.status, "success", "Graph probe evidence must be successful");
+const graphProbeToolEvent = graphProbeEvidence.events.find((event) => event.event_type === "tool_call");
+assert.equal(graphProbeToolEvent.tool_name, "microsoft.graph.metadata", "Graph probe evidence must include the metadata tool call");
+assert.equal(
+  graphProbeToolEvent.endpoint,
+  "https://graph.microsoft.com/v1.0/$metadata",
+  "Graph probe evidence must use the public Microsoft Graph metadata endpoint",
+);
+assert.ok(graphProbeToolEvent.metadata.entity_types > 0, "Graph probe evidence must include entity type count");
+assert.ok(graphProbeToolEvent.metadata.entity_sets > 0, "Graph probe evidence must include entity set count");
+assert.doesNotMatch(JSON.stringify(graphProbeEvidence), /authorization|bearer|access_token|refresh_token|client_secret/i);
 
 const lablabSlidesRequiredSnippets = [
   "AgentOps Ledger",

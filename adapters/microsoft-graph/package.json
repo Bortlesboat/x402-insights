@@ -1,0 +1,10 @@
+{
+  "name": "agentops-ledger-microsoft-graph-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "probe": "node graph-metadata-probe.mjs --json",
+    "test": "node test-graph-metadata-probe.mjs"
+  }
+}
