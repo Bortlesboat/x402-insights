@@ -14,6 +14,7 @@ The proof run used during packaging was `run_demo_vendor_blocked`, a human-in-th
 
 - `searches.json`: reusable SPL searches for run timelines, rejected approval gates, failed tool calls, payment risk events, and retry/error summaries.
 - `agentops-ai-prompts.md`: prompt templates for Splunk AI Assistant or Splunk MCP Server workflows.
+- `splunk-mcp-tool-map.md`: official Splunk MCP Server alignment notes that map every included search to `splunk_run_query` while preserving the no-execution-proof boundary.
 
 ## Use With Splunk AI Assistant
 
@@ -30,13 +31,15 @@ Using sourcetype=agentops:run_event, explain the timeline for run_id=run_demo_ve
 
 ## Use With Splunk MCP Server
 
-Point an MCP-capable agent at Splunk, then use the matching `mcp_prompt` from `searches.json`.
+Point an MCP-capable agent at Splunk, then use the matching `mcp_prompt` from `searches.json`. Each search also includes `mcp_tool: "splunk_run_query"` so the pack maps cleanly to the official Splunk MCP Server search tool.
 
 Example:
 
 ```text
 Search Splunk for sourcetype=agentops:run_event and run_id=run_demo_vendor_blocked. Summarize the ordered run timeline and identify any risky or human-in-the-loop events.
 ```
+
+See `splunk-mcp-tool-map.md` for the official-tool mapping and the exact boundary between verified HEC indexing proof and optional Splunk MCP / AI Assistant execution.
 
 ## Included Investigations
 
