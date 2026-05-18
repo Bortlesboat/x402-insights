@@ -1,0 +1,10 @@
+{
+  "name": "agentops-ledger-splunk-hec-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "export": "node export-run-to-hec.mjs",
+    "test": "node test-export-run-to-hec.mjs"
+  }
+}

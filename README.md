@@ -116,6 +116,10 @@ GET /api/by-endpoint
 GET /api/by-agent
 ```
 
+## Architecture
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the data-flow diagram, run export shape, and Splunk HEC integration path.
+
 ## x402 Payment Observability
 
 The original x402 instrumentation still works. `trackX402()` emits payment events, and the facilitator adapter can attach to x402 facilitator lifecycle hooks.
@@ -132,11 +136,26 @@ attachInsights(facilitator, {
 
 Every verify and settle hook can be logged into the same ledger as normal agent tool calls and approvals.
 
+## Splunk Export
+
+The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
+
+```powershell
+$env:AGENTOPS_BASE_URL = "http://localhost:4000"
+$env:AGENTOPS_RUN_ID = "run_demo_vendor_blocked"
+$env:SPLUNK_HEC_URL = "https://splunk.example:8088"
+$env:SPLUNK_HEC_TOKEN = "<hec-token>"
+$env:SPLUNK_INDEX = "agentops"
+
+node adapters/splunk-hec/export-run-to-hec.mjs
+```
+
 ## Project Structure
 
 ```text
 sdk/                        TypeScript SDK
 adapters/facilitator-x402/  x402 facilitator adapter
+adapters/splunk-hec/        Splunk HTTP Event Collector exporter
 server/                     Express + SQLite ingestion API + dashboard
 examples/                   Reference integrations
 docs/hackathon/             Submission copy and demo script
@@ -152,6 +171,8 @@ npm test
 cd ../server
 npm install
 npm test
+
+node ../adapters/splunk-hec/test-export-run-to-hec.mjs
 ```
 
 Expected:
@@ -159,12 +180,13 @@ Expected:
 ```text
 sdk smoke test passed
 server smoke test passed
+splunk hec export test passed
 ```
 
 ## Hackathon Positioning
 
 - **NandaHack:** trust and operations infrastructure for enterprise agents.
-- **Splunk Agentic Ops:** agent-run telemetry that can be exported into ops/security workflows.
+- **Splunk Agentic Ops:** agent-run telemetry exported through HEC into ops/security workflows.
 - **Google Rapid Agent:** MCP-style tool observability for Gemini/agent workflows.
 - **UiPath AgentHack:** human-in-the-loop audit layer around enterprise agent orchestration.
 
