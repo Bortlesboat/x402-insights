@@ -129,6 +129,9 @@ The result is a dashboard and exportable audit JSON that answers the questions e
 
 ## Proof Assets
 
+- Public repo: https://github.com/Bortlesboat/x402-insights
+- Public demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
+- Public demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo.mp4
 - Dashboard screenshot: `docs/agentops-ledger-dashboard.png`
 - Mobile screenshot: `docs/agentops-ledger-mobile.png`
 - Submission draft: `docs/hackathon/agentops-ledger-submission.md`
