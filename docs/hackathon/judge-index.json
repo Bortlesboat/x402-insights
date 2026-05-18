@@ -22,6 +22,7 @@
     "repository": "https://github.com/Bortlesboat/x402-insights",
     "hostedVideo": "https://youtu.be/De8c_IgCueU",
     "tracker": "https://github.com/Bortlesboat/x402-insights/issues/10",
+    "feedbackIssue": "https://github.com/Bortlesboat/x402-insights/issues/21",
     "splunkSubmissionPacket": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md",
     "splunkHecProof": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
     "splunkInvestigationPack": "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack",
