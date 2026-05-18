@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1280, initial-scale=1" />
+    <title>AgentOps Ledger Video Thumbnail</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #12171c;
+        --muted: #56616b;
+        --paper: #f2eee6;
+        --panel: #fffaf0;
+        --line: #d6cec0;
+        --steel: #263f56;
+        --green: #28664b;
+        --red: #9d3f36;
+        --gold: #a87823;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1280px;
+        height: 720px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background:
+          linear-gradient(90deg, rgba(38, 63, 86, 0.1) 1px, transparent 1px),
+          linear-gradient(rgba(38, 63, 86, 0.08) 1px, transparent 1px),
+          var(--paper);
+        background-size: 40px 40px;
+        color: var(--ink);
+        font-family:
+          ui-sans-serif,
+          "Segoe UI",
+          system-ui,
+          sans-serif;
+      }
+
+      .canvas {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        padding: 62px 70px;
+      }
+
+      .canvas::before {
+        content: "";
+        position: absolute;
+        inset: 28px;
+        border: 2px solid rgba(18, 23, 28, 0.82);
+        pointer-events: none;
+      }
+
+      .grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 465px 1fr;
+        gap: 54px;
+        align-items: center;
+        height: 100%;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        color: var(--steel);
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .mark {
+        width: 43px;
+        height: 43px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        padding: 6px;
+        border: 2px solid var(--ink);
+        background: var(--panel);
+      }
+
+      .mark span {
+        background: var(--steel);
+      }
+
+      h1 {
+        max-width: 440px;
+        margin: 0;
+        font-size: 82px;
+        line-height: 0.9;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        max-width: 430px;
+        margin: 28px 0 0;
+        color: #313941;
+        font-size: 29px;
+        line-height: 1.18;
+        font-weight: 680;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 34px;
+      }
+
+      .badge {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        border: 2px solid currentColor;
+        padding: 0 13px;
+        background: rgba(255, 250, 240, 0.74);
+        color: var(--steel);
+        font-size: 16px;
+        font-weight: 820;
+      }
+
+      .badge:nth-child(2) {
+        color: var(--green);
+      }
+
+      .badge:nth-child(3) {
+        color: var(--red);
+      }
+
+      .badge:nth-child(4) {
+        color: var(--gold);
+      }
+
+      .evidence {
+        position: relative;
+      }
+
+      .frame {
+        transform: rotate(-1.2deg);
+        border: 2px solid var(--ink);
+        background: var(--panel);
+        box-shadow: 22px 24px 0 rgba(38, 63, 86, 0.16);
+        padding: 13px;
+      }
+
+      .frame img {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--line);
+      }
+
+      .callout {
+        position: absolute;
+        right: -18px;
+        bottom: -35px;
+        width: 318px;
+        border: 2px solid var(--ink);
+        background: var(--green);
+        color: #fbf7ed;
+        padding: 18px 20px;
+        font-size: 23px;
+        line-height: 1.06;
+        font-weight: 820;
+        box-shadow: 12px 12px 0 rgba(18, 23, 28, 0.18);
+      }
+
+      .rail {
+        position: absolute;
+        right: 66px;
+        top: 42px;
+        color: var(--muted);
+        font-size: 16px;
+        font-weight: 820;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas" aria-label="AgentOps Ledger video thumbnail">
+      <div class="rail">Splunk-ready agent telemetry</div>
+      <section class="grid">
+        <div>
+          <div class="brand">
+            <span class="mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            <span>AgentOps Ledger</span>
+          </div>
+          <h1>Enterprise Agent Flight Recorder</h1>
+          <p class="subtitle">Tool calls, approvals, retries, errors, x402 payments, and outcomes in one run ledger.</p>
+          <div class="badges" aria-label="Evidence types">
+            <span class="badge">Tool calls</span>
+            <span class="badge">Approvals</span>
+            <span class="badge">x402 payments</span>
+            <span class="badge">Splunk-ready</span>
+          </div>
+        </div>
+        <div class="evidence">
+          <figure class="frame">
+            <img src="agentops-ledger-dashboard.png" alt="AgentOps Ledger dashboard with run timelines and risk flags" />
+          </figure>
+          <div class="callout">Inspect every agent run before it hits production.</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

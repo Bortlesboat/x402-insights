@@ -12,6 +12,8 @@ AgentOps Ledger
 - Pull request: https://github.com/Bortlesboat/x402-insights/pull/1
 - Demo release: https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18
 - Demo MP4: https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4
+- Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
+- Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 - Architecture: https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md
 - Splunk HEC proof: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md
 
@@ -121,4 +123,5 @@ AgentOps Ledger complements enterprise automation by showing human approval gate
 - Root architecture diagram
 - README quick start
 - Demo video or screen recording
+- Devpost-compatible YouTube/Vimeo/Youku upload using `docs/hackathon/video-hosting.md`
 - Public repository link
