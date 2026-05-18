@@ -155,6 +155,7 @@ The live paid route `https://bitcoinsapi.com/api/v1/fees/landscape` returns an x
 The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
 
 Proof packet: [docs/hackathon/splunk-hec-proof.md](docs/hackathon/splunk-hec-proof.md)
+Investigation pack: [adapters/splunk-hec/investigation-pack](adapters/splunk-hec/investigation-pack)
 Video upload package: [docs/hackathon/video-hosting.md](docs/hackathon/video-hosting.md)
 
 ```powershell
@@ -166,6 +167,8 @@ $env:SPLUNK_INDEX = "agentops"
 
 node adapters/splunk-hec/export-run-to-hec.mjs
 ```
+
+The investigation pack includes reusable SPL searches and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over `agentops:run_event` data.
 
 ## Project Structure
 
@@ -190,6 +193,7 @@ npm install
 npm test
 
 node ../adapters/splunk-hec/test-export-run-to-hec.mjs
+node ../adapters/splunk-hec/test-investigation-pack.mjs
 ```
 
 Expected:
@@ -198,6 +202,7 @@ Expected:
 sdk smoke test passed
 server smoke test passed
 splunk hec export test passed
+splunk investigation pack test passed
 ```
 
 ## Hackathon Positioning
