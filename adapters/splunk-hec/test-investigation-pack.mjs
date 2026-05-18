@@ -9,8 +9,9 @@ const packDir = path.join(here, 'investigation-pack');
 const searchesPath = path.join(packDir, 'searches.json');
 const readmePath = path.join(packDir, 'README.md');
 const promptsPath = path.join(packDir, 'agentops-ai-prompts.md');
+const mcpToolMapPath = path.join(packDir, 'splunk-mcp-tool-map.md');
 
-for (const filePath of [searchesPath, readmePath, promptsPath]) {
+for (const filePath of [searchesPath, readmePath, promptsPath, mcpToolMapPath]) {
   assert.ok(existsSync(filePath), `missing investigation pack file: ${path.basename(filePath)}`);
 }
 
@@ -38,6 +39,7 @@ for (const search of searches) {
   assert.equal(typeof search.spl, 'string', `spl missing for ${search.id}`);
   assert.equal(typeof search.ai_assistant_prompt, 'string', `AI Assistant prompt missing for ${search.id}`);
   assert.equal(typeof search.mcp_prompt, 'string', `MCP prompt missing for ${search.id}`);
+  assert.equal(search.mcp_tool, 'splunk_run_query', `${search.id} should map to the official Splunk MCP search tool`);
   assert.ok(Array.isArray(search.expected_fields), `expected_fields missing for ${search.id}`);
 
   assert.match(search.spl, /sourcetype=agentops:run_event/, `${search.id} should target the AgentOps sourcetype`);
@@ -68,6 +70,18 @@ for (const term of [
 const prompts = await readFile(promptsPath, 'utf8');
 for (const term of ['failed agent runs', 'rejected approvals', 'blocked payments', 'run_demo_vendor_blocked']) {
   assert.match(prompts, new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), `prompts missing ${term}`);
+}
+
+const mcpToolMap = await readFile(mcpToolMapPath, 'utf8');
+for (const term of [
+  'official Splunk MCP Server',
+  'splunk_run_query',
+  'Splunk AI Assistant for SPL',
+  'saia_',
+  'run_demo_vendor_blocked',
+  'does not claim MCP execution proof',
+]) {
+  assert.match(mcpToolMap, new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), `MCP tool map missing ${term}`);
 }
 
 console.log('splunk investigation pack test passed');
