@@ -5,6 +5,7 @@ Flight recorder for enterprise agents. Record every tool call, approval gate, re
 AgentOps Ledger extends the original `x402-insights` spend observability project into a broader operations console for autonomous agents. The goal is simple: when an agent touches real systems, teams should be able to inspect exactly what happened.
 
 Hosted demo: https://bortlesboat.github.io/x402-insights/
+Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 
 ![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
 
