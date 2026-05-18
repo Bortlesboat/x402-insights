@@ -12,6 +12,9 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - Personal portfolio: https://bortlesboat.github.io/
 - TechEx/lablab submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md
 - TechEx/lablab slide presentation: https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html
+- Microsoft Agent Academy Special Ops packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-agent-academy-special-ops.md
+- Microsoft Graph adapter: https://github.com/Bortlesboat/x402-insights/tree/main/adapters/microsoft-graph
+- Microsoft Graph probe evidence: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json
 - Repository: https://github.com/Bortlesboat/x402-insights
 - Hosted video: https://youtu.be/De8c_IgCueU
 - Public tracker: https://github.com/Bortlesboat/x402-insights/issues/10
@@ -27,6 +30,7 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 - Hosted demo video is public.
 - Splunk Agentic Ops Devpost is prepared but not submitted yet.
 - TechEx/lablab packet is prepared but not submitted yet.
+- Microsoft Agent Academy packet is prepared but not submitted yet.
 - Broader social launch post is not posted yet.
 - No prize or judging outcome is claimed.
 
@@ -35,6 +39,8 @@ Primary public URL: https://bortlesboat.github.io/x402-insights/launch.html
 AgentOps Ledger exports selected run evidence into Splunk through HTTP Event Collector as `agentops:run_event` telemetry. The public Splunk proof packet documents a local Splunk Enterprise run where `run_demo_vendor_blocked` indexed as five `agentops-ledger` events.
 
 The Splunk investigation pack contains reusable SPL searches for run timelines, rejected approval gates, failed tool calls, payment risk events, and retry/error summaries. The Splunk MCP tool map maps those searches to the official `splunk_run_query` MCP tool vocabulary while keeping the boundary clear: no MCP execution proof, Splunk AI Assistant execution proof, Hosted Models execution proof, or judging outcome is claimed.
+
+The Microsoft Graph adapter calls the public `https://graph.microsoft.com/v1.0/$metadata` endpoint and records it as `run_microsoft_graph_metadata_probe` for the Microsoft Agent Academy Special Ops packet. Current public evidence is `docs/hackathon/microsoft-graph-metadata-probe.json`. No Microsoft Agent Academy submission, badge, finalist status, winner status, or prize outcome is claimed.
 
 ## Suggested Citation
 

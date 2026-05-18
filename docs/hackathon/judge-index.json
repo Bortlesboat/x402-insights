@@ -7,6 +7,7 @@
       "hostedVideoPublic": true,
       "splunkDevpostSubmitted": false,
       "lablabTechexSubmitted": false,
+      "agentAcademySubmitted": false,
       "socialLaunchPosted": false,
       "prizeOutcomeClaimed": false,
       "goalComplete": false
@@ -19,6 +20,9 @@
     "personalPortfolio": "https://bortlesboat.github.io/",
     "lablabTechexSubmission": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/techex-lablab-submission.md",
     "lablabTechexSlides": "https://bortlesboat.github.io/x402-insights/hackathon/techex-lablab-slides.html",
+    "agentAcademySpecialOpsPacket": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-agent-academy-special-ops.md",
+    "microsoftGraphAdapter": "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/microsoft-graph",
+    "microsoftGraphProbeEvidence": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json",
     "repository": "https://github.com/Bortlesboat/x402-insights",
     "hostedVideo": "https://youtu.be/De8c_IgCueU",
     "tracker": "https://github.com/Bortlesboat/x402-insights/issues/10",
@@ -44,6 +48,7 @@
   "hackathonPositioning": {
     "primary": "Splunk Agentic Ops - Platform & Developer Experience",
     "secondary": "NandaHack - Infrastructure Agents",
+    "additionalRoute": "Microsoft Agent Academy Hackathon - Special Ops",
     "useCase": "Operational audit trail for enterprise agents that touch tools, approvals, payments, and external systems."
   },
   "updatedAt": "2026-05-18"

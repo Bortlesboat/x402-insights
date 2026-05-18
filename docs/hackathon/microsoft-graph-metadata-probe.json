@@ -1,0 +1,58 @@
+{
+  "run_id": "run_microsoft_graph_metadata_probe",
+  "agent": "agent-academy-special-ops-agent",
+  "workflow": "microsoft-graph-compliance-packet",
+  "status": "success",
+  "started_at": "2026-05-18T15:57:43.045Z",
+  "finished_at": "2026-05-18T15:57:43.045Z",
+  "events": [
+    {
+      "timestamp": "2026-05-18T15:57:43.045Z",
+      "event_type": "run_started",
+      "status": "running",
+      "agent": "agent-academy-special-ops-agent",
+      "workflow": "microsoft-graph-compliance-packet",
+      "metadata": {
+        "route": "Microsoft Agent Academy Special Ops"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T15:57:43.045Z",
+      "event_type": "tool_call",
+      "step_name": "inspect_graph_metadata",
+      "tool_name": "microsoft.graph.metadata",
+      "endpoint": "https://graph.microsoft.com/v1.0/$metadata",
+      "status": "success",
+      "duration_ms": 422,
+      "risk_flags": [
+        "external_system",
+        "read_only_metadata",
+        "no_user_data"
+      ],
+      "metadata": {
+        "microsoft_service": "Microsoft Graph API",
+        "entity_types": 1152,
+        "entity_sets": 41,
+        "actions": 845,
+        "functions": 321,
+        "has_entity_container": true
+      }
+    },
+    {
+      "timestamp": "2026-05-18T15:57:43.045Z",
+      "event_type": "approval",
+      "step_name": "tenant_data_access",
+      "approval_status": "not_required",
+      "status": "skipped",
+      "metadata": {
+        "reason": "Public metadata endpoint; no tenant, user, or payment data accessed."
+      }
+    },
+    {
+      "timestamp": "2026-05-18T15:57:43.045Z",
+      "event_type": "run_finished",
+      "status": "success",
+      "summary": "Microsoft Graph metadata inspected and converted into AgentOps Ledger run evidence."
+    }
+  ]
+}
