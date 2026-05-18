@@ -5,6 +5,10 @@ const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf
 const caseStudy = await readFile(new URL("../docs/case-study.html", import.meta.url), "utf8");
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const submission = await readFile(new URL("../docs/hackathon/agentops-ledger-submission.md", import.meta.url), "utf8");
+const splunkSubmission = await readFile(
+  new URL("../docs/hackathon/splunk-agentic-ops-submission.md", import.meta.url),
+  "utf8",
+);
 const videoHosting = await readFile(new URL("../docs/hackathon/video-hosting.md", import.meta.url), "utf8");
 const thumbnailSource = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.html", import.meta.url), "utf8");
 const thumbnailPng = await readFile(new URL("../docs/agentops-ledger-video-thumbnail.png", import.meta.url));
@@ -16,7 +20,11 @@ const investigationSearches = await readFile(
 
 const trackerUrl = "https://github.com/Bortlesboat/x402-insights/issues/10";
 const videoHostingUrl = "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md";
+const splunkSubmissionUrl =
+  "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md";
 const investigationPackUrl = "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack";
+const splunkMcpToolMapUrl =
+  "https://github.com/Bortlesboat/x402-insights/blob/main/adapters/splunk-hec/investigation-pack/splunk-mcp-tool-map.md";
 const hostedVideoUrl = "https://youtu.be/De8c_IgCueU";
 
 const requiredSnippets = [
@@ -49,8 +57,10 @@ const requiredSnippets = [
   "Splunk Agentic Ops",
   "case-study.html",
   trackerUrl,
+  splunkSubmissionUrl,
   videoHostingUrl,
   investigationPackUrl,
+  splunkMcpToolMapUrl,
   hostedVideoUrl,
 ];
 
@@ -70,10 +80,16 @@ assert.match(
   "README must link the public submission/outcome tracker",
 );
 assert.match(readme, /https:\/\/youtu\.be\/De8c_IgCueU/, "README must link the public hosted video");
+assert.match(
+  readme,
+  /docs\/hackathon\/splunk-agentic-ops-submission\.md/,
+  "README must link the public Splunk submission packet",
+);
 assert.doesNotMatch(html, /C:[/\\]Users/i, "demo page must not expose local Windows paths");
 assert.doesNotMatch(caseStudy, /C:[/\\]Users/i, "case study page must not expose local Windows paths");
 assert.doesNotMatch(readme, /C:[/\\]Users/i, "README must not expose local Windows paths");
 assert.doesNotMatch(submission, /C:[/\\]Users/i, "submission draft must not expose local Windows paths");
+assert.doesNotMatch(splunkSubmission, /C:[/\\]Users/i, "Splunk submission packet must not expose local Windows paths");
 assert.doesNotMatch(videoHosting, /C:[/\\]Users/i, "video-hosting package must not expose local Windows paths");
 assert.doesNotMatch(thumbnailSource, /C:[/\\]Users/i, "thumbnail source must not expose local Windows paths");
 
@@ -95,6 +111,8 @@ const caseStudyRequiredSnippets = [
   "https://bortlesboat.github.io/x402-insights/",
   "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
   videoHostingUrl,
+  splunkSubmissionUrl,
+  splunkMcpToolMapUrl,
   trackerUrl,
   hostedVideoUrl,
 ];
@@ -123,6 +141,28 @@ assert.match(
   "submission draft must link the Splunk investigation pack",
 );
 assert.match(submission, /https:\/\/youtu\.be\/De8c_IgCueU/, "submission draft must link the public hosted video");
+
+const splunkSubmissionRequiredSnippets = [
+  "Splunk Agentic Ops Submission Packet",
+  "Platform & Developer Experience",
+  "https://splunk.devpost.com/",
+  hostedVideoUrl,
+  "agentops:run_event",
+  "splunk_run_query",
+  splunkMcpToolMapUrl,
+  investigationPackUrl,
+  "Submissions open soon",
+  "No MCP execution proof is claimed",
+  trackerUrl,
+];
+
+for (const snippet of splunkSubmissionRequiredSnippets) {
+  assert.match(
+    splunkSubmission,
+    new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    `Splunk submission packet missing ${snippet}`,
+  );
+}
 
 const parsedInvestigationSearches = JSON.parse(investigationSearches);
 assert.ok(Array.isArray(parsedInvestigationSearches), "investigation searches must be an array");

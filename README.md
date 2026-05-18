@@ -8,6 +8,7 @@ Hosted demo: https://bortlesboat.github.io/x402-insights/
 Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 Hosted video: https://youtu.be/De8c_IgCueU
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
+Splunk submission packet: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md
 Video hosting package: https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/video-hosting.md
 Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png
 
@@ -157,6 +158,7 @@ The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:r
 
 Proof packet: [docs/hackathon/splunk-hec-proof.md](docs/hackathon/splunk-hec-proof.md)
 Investigation pack: [adapters/splunk-hec/investigation-pack](adapters/splunk-hec/investigation-pack)
+Splunk submission packet: [docs/hackathon/splunk-agentic-ops-submission.md](docs/hackathon/splunk-agentic-ops-submission.md)
 Hosted video: https://youtu.be/De8c_IgCueU
 Video upload package: [docs/hackathon/video-hosting.md](docs/hackathon/video-hosting.md)
 
@@ -170,7 +172,7 @@ $env:SPLUNK_INDEX = "agentops"
 node adapters/splunk-hec/export-run-to-hec.mjs
 ```
 
-The investigation pack includes reusable SPL searches and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over `agentops:run_event` data.
+The investigation pack includes reusable SPL searches, a `splunk_run_query` MCP tool map, and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over `agentops:run_event` data.
 
 ## Project Structure
 
