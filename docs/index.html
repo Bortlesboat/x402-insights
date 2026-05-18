@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentOps Ledger | Enterprise Agent Flight Recorder</title>
+    <meta
+      name="description"
+      content="AgentOps Ledger records enterprise-agent tool calls, approvals, retries, payments, errors, and final outcomes in one inspectable audit trail."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #101418;
+        --muted: #5a626b;
+        --paper: #f5f2ec;
+        --panel: #fffdf8;
+        --line: #d8d2c7;
+        --steel: #2d465c;
+        --green: #2e6b4f;
+        --red: #9f3f36;
+        --gold: #9d742d;
+        --shadow: 0 24px 60px rgba(16, 20, 24, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(45, 70, 92, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(45, 70, 92, 0.06) 1px, transparent 1px),
+          var(--paper);
+        background-size: 44px 44px;
+        color: var(--ink);
+        font-family:
+          ui-sans-serif,
+          "Segoe UI",
+          system-ui,
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 760;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border: 2px solid var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 5px;
+        background: var(--panel);
+      }
+
+      .brand-mark span {
+        display: block;
+        background: var(--steel);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 14px;
+        font-size: 0.92rem;
+      }
+
+      .nav-links a,
+      .button {
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        text-underline-offset: 4px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
+        align-items: center;
+        gap: clamp(28px, 4vw, 56px);
+        min-height: calc(100vh - 116px);
+        padding: 34px 0 80px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        margin: 0 0 22px;
+        color: var(--steel);
+        font-size: 0.85rem;
+        font-weight: 760;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 36px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(3.1rem, 8vw, 7.4rem);
+        line-height: 0.88;
+        letter-spacing: 0;
+        font-weight: 820;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin: 28px 0 0;
+        color: #30363d;
+        font-size: clamp(1.08rem, 2vw, 1.42rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--panel);
+        font-weight: 740;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 36px;
+      }
+
+      .proof {
+        border-top: 3px solid var(--ink);
+        padding-top: 12px;
+      }
+
+      .proof strong {
+        display: block;
+        font-size: clamp(1.45rem, 3vw, 2.25rem);
+        line-height: 1;
+      }
+
+      .proof span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .screenshot-frame {
+        position: relative;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: clamp(10px, 1.6vw, 18px);
+      }
+
+      .screenshot-frame::before {
+        content: "run evidence";
+        position: absolute;
+        top: -32px;
+        right: 0;
+        color: var(--steel);
+        font-size: 0.78rem;
+        font-weight: 760;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .screenshot-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.55fr) minmax(320px, 0.45fr);
+        gap: 34px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2.2rem, 5vw, 4.8rem);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .run-grid,
+      .link-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .run-card,
+      .link-card,
+      .code-panel {
+        border: 1px solid var(--line);
+        background: rgba(255, 253, 248, 0.92);
+      }
+
+      .run-card {
+        padding: 22px;
+      }
+
+      .run-card h3,
+      .link-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.08rem;
+      }
+
+      .run-card p,
+      .link-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .status {
+        display: inline-block;
+        margin-bottom: 22px;
+        padding: 4px 9px;
+        border: 1px solid currentColor;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .status.success {
+        color: var(--green);
+      }
+
+      .status.retry {
+        color: var(--gold);
+      }
+
+      .status.blocked {
+        color: var(--red);
+      }
+
+      .code-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.6fr);
+        gap: 24px;
+        padding: clamp(20px, 3vw, 32px);
+      }
+
+      pre {
+        margin: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        color: #17202a;
+        font-size: 0.94rem;
+      }
+
+      code {
+        font-family:
+          "SFMono-Regular",
+          Consolas,
+          "Liberation Mono",
+          monospace;
+      }
+
+      .code-note {
+        border-left: 3px solid var(--steel);
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .link-card {
+        min-height: 190px;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-decoration: none;
+      }
+
+      .link-card span {
+        color: var(--steel);
+        font-weight: 760;
+      }
+
+      .footer {
+        padding: 40px 0 56px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .section-head,
+        .code-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .screenshot-frame::before {
+          display: none;
+        }
+
+        .proof-strip,
+        .run-grid,
+        .link-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        h1 {
+          font-size: clamp(3rem, 16vw, 4.8rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell nav">
+      <div class="brand" aria-label="AgentOps Ledger">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span>AgentOps Ledger</span>
+      </div>
+      <nav class="nav-links" aria-label="Project links">
+        <a href="https://github.com/Bortlesboat/x402-insights">Repository</a>
+        <a href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">Architecture</a>
+        <a href="https://github.com/Bortlesboat/x402-insights/releases/tag/agentops-ledger-2026-05-18">Release</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="shell hero">
+        <div>
+          <p class="eyebrow">Enterprise agent infrastructure</p>
+          <h1>AgentOps Ledger</h1>
+          <p class="lead">
+            A flight recorder for enterprise agents. Inspect tool calls, approval gates, retries, errors,
+            x402 payments, and final outcomes in one audit trail.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/Bortlesboat/x402-insights">View the repo</a>
+            <a
+              class="button secondary"
+              href="https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4"
+            >
+              Watch 46s demo
+            </a>
+          </div>
+          <div class="proof-strip" aria-label="Project proof points">
+            <div class="proof"><strong>3</strong><span>seeded vendor-risk runs</span></div>
+            <div class="proof"><strong>6</strong><span>agent event types</span></div>
+            <div class="proof"><strong>1</strong><span>Splunk-ready export path</span></div>
+          </div>
+        </div>
+        <figure class="screenshot-frame">
+          <img src="agentops-ledger-dashboard.png" alt="AgentOps Ledger dashboard showing agent run timelines and risk flags" />
+        </figure>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>What judges can inspect</h2>
+          <p>
+            The demo is not another chat interface. It is operational evidence for teams asking what an
+            autonomous workflow touched, spent, retried, blocked, and finished.
+          </p>
+        </div>
+        <div class="run-grid">
+          <article class="run-card">
+            <span class="status success">success</span>
+            <h3>Vendor risk review</h3>
+            <p>Records search, human approval, x402 enrichment payment, and final cleared outcome.</p>
+          </article>
+          <article class="run-card">
+            <span class="status retry">retry</span>
+            <h3>Supplier onboarding</h3>
+            <p>Flaky tool call, retry evidence, recovered workflow, and spend attribution by agent.</p>
+          </article>
+          <article class="run-card">
+            <span class="status blocked">blocked</span>
+            <h3>High-risk payment</h3>
+            <p>Approval request, rejection, blocked paid action, final error state, and exportable JSON.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>Small SDK surface</h2>
+          <p>
+            AgentOps Ledger works around existing agent runtimes. Wrap the workflow, emit events, and keep
+            the agent stack you already use.
+          </p>
+        </div>
+        <div class="code-panel">
+          <pre><code>const run_id = await startRun({
+  agent,
+  workflow
+});
+
+await trackToolCall({
+  run_id,
+  step_name,
+  tool_name,
+  fn
+});
+
+await trackApproval({
+  run_id,
+  approval_status
+});
+
+await trackPayment({
+  run_id,
+  endpoint,
+  cost,
+  currency
+});
+
+await finishRun({
+  run_id,
+  status,
+  summary
+});</code></pre>
+          <div class="code-note">
+            Designed for NandaHack-style infrastructure evaluation and Splunk Agentic Ops telemetry. The
+            Splunk HEC adapter in <code>adapters/splunk-hec</code> exports run events as
+            <code>agentops:run_event</code>.
+          </div>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <h2>Submission assets</h2>
+          <p>Everything needed to judge, run, inspect, and adapt the project is public.</p>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">
+            <div>
+              <h3>Architecture</h3>
+              <p>Agent SDK, local ledger, export API, Splunk HEC, and Splunk AI workflow path.</p>
+            </div>
+            <span>Open ARCHITECTURE.md</span>
+          </a>
+          <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec">
+            <div>
+              <h3>Splunk Agentic Ops</h3>
+              <p>Export a selected run to Splunk HTTP Event Collector for security and ops investigation.</p>
+            </div>
+            <span>Open adapters/splunk-hec</span>
+          </a>
+          <a
+            class="link-card"
+            href="https://github.com/Bortlesboat/x402-insights/releases/download/agentops-ledger-2026-05-18/agentops-ledger-demo-46s.mp4"
+          >
+            <div>
+              <h3>NandaHack demo</h3>
+              <p>Captioned product walkthrough for enterprise-agent infrastructure review.</p>
+            </div>
+            <span>Watch the demo</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      Built for NandaHack, Splunk Agentic Ops, and 2026 enterprise-agent infrastructure evaluations.
+    </footer>
+  </body>
+</html>
