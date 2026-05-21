@@ -185,6 +185,6 @@
     "Prepared submission packets are not treated as submitted until a public platform URL or explicit confirmation is recorded.",
     "Local Splunk HEC proof demonstrates indexed run_event telemetry; it does not claim Splunk AI Assistant, Hosted Models, or MCP Server execution proof.",
     "The project is not affiliated with AgentOps.ai; any AgentOps.ai contribution is only a local draft until Andy explicitly approves an upstream PR.",
-    "The proof page is local repo state until the repository is published and GitHub Pages rebuilds."
+    "The proof page is published on GitHub Pages from the repository's docs source."
   ]
 }
