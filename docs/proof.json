@@ -1,0 +1,190 @@
+{
+  "schema": "https://bortlesboat.github.io/x402-insights/schemas/project-proof-graph-v1",
+  "project": {
+    "name": "Agent Payment Ledger",
+    "tagline": "A payment-aware audit trail for autonomous agents.",
+    "canonicalProofPage": "https://bortlesboat.github.io/x402-insights/proof.html",
+    "repository": "https://github.com/Bortlesboat/x402-insights",
+    "lastVerified": "2026-05-21",
+    "statusSummary": "Public demo, case study, hosted video, NandaHack submission, Splunk HEC proof packet, investigation pack, Microsoft Graph probe evidence, and machine-readable discovery exist. Splunk Devpost, TechEx/lablab, Microsoft Agent Academy, social launch, and judging outcomes remain open or unclaimed.",
+    "status": {
+      "publicDemoLive": true,
+      "caseStudyLive": true,
+      "proofPageLiveInRepo": true,
+      "hostedVideoPublic": true,
+      "nandaHackSubmitted": true,
+      "splunkHecProofPublished": true,
+      "splunkDevpostSubmitted": false,
+      "lablabTechexSubmitted": false,
+      "agentAcademySubmitted": false,
+      "socialLaunchPosted": false,
+      "prizeOutcomeClaimed": false,
+      "goalComplete": false
+    }
+  },
+  "relationship": {
+    "notAffiliatedWith": "AgentOps.ai",
+    "agentOpsAiRepository": "https://github.com/AgentOps-AI/agentops",
+    "positioning": "Agent Payment Ledger is a complementary payment and audit receipt layer for x402-style paid API calls, approvals, and exportable evidence.",
+    "upstreamContributionDraft": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/agentops-ai-upstream-contribution-draft.md"
+  },
+  "entrypoints": {
+    "proofPage": "https://bortlesboat.github.io/x402-insights/proof.html",
+    "proofJson": "https://bortlesboat.github.io/x402-insights/proof.json",
+    "llms": "https://bortlesboat.github.io/x402-insights/llms.txt",
+    "judgeIndex": "https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json",
+    "sitemap": "https://bortlesboat.github.io/x402-insights/sitemap.xml"
+  },
+  "proofNodes": [
+    {
+      "id": "hosted_demo",
+      "label": "Hosted demo",
+      "claim": "Agent Payment Ledger has a public hosted demo surface for reviewers.",
+      "status": "published",
+      "proofUrl": "https://bortlesboat.github.io/x402-insights/",
+      "artifactType": "static_site",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "case_study",
+      "label": "Case study",
+      "claim": "The project has a public case study that explains the problem, build, evidence, judging angle, and open gates.",
+      "status": "published",
+      "proofUrl": "https://bortlesboat.github.io/x402-insights/case-study.html",
+      "artifactType": "static_site",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "agentops_ai_upstream_draft",
+      "label": "AgentOps.ai upstream contribution draft",
+      "claim": "A local-only draft exists for contributing an x402 paid-API telemetry example to AgentOps.ai without claiming affiliation or ownership.",
+      "status": "local_draft",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/agentops-ai-upstream-contribution-draft.md",
+      "artifactType": "markdown",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture",
+      "claim": "The repository documents the SDK, ledger, export API, Splunk HEC adapter, Splunk index, and investigation path.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md",
+      "artifactType": "markdown",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "splunk_hec_proof",
+      "label": "Splunk HEC proof",
+      "claim": "A selected agent payment run was exported to local Splunk Enterprise through HEC as five historical agentops-ledger events.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md",
+      "artifactType": "markdown",
+      "evidence": {
+        "index": "agentops",
+        "source": "agentops-ledger",
+        "sourcetype": "agentops:run_event",
+        "verifiedRunId": "run_demo_vendor_blocked",
+        "verifiedExportedEvents": 5
+      },
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "splunk_investigation_pack",
+      "label": "Splunk investigation pack",
+      "claim": "Reusable SPL searches, prompt templates, and Splunk MCP tool map exist for payment-ledger telemetry investigation.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/tree/main/adapters/splunk-hec/investigation-pack",
+      "artifactType": "repo_directory",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "microsoft_graph_probe",
+      "label": "Microsoft Graph probe evidence",
+      "claim": "A credential-free Microsoft Graph $metadata probe is captured as Agent Payment Ledger evidence.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json",
+      "artifactType": "json",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "hosted_video",
+      "label": "Hosted demo video",
+      "claim": "A public demo video exists for reviewer and submission surfaces.",
+      "status": "published",
+      "proofUrl": "https://youtu.be/De8c_IgCueU",
+      "artifactType": "video",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "outcome_tracker",
+      "label": "Outcome tracker",
+      "claim": "Submission gates, feedback links, and prize/no-prize outcomes are tracked without overclaiming.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/issues/10",
+      "artifactType": "github_issue",
+      "lastVerified": "2026-05-21"
+    },
+    {
+      "id": "feedback_issue",
+      "label": "Feedback issue",
+      "claim": "The project has a public feedback surface for missing event types, proof questions, and reviewer suggestions.",
+      "status": "published",
+      "proofUrl": "https://github.com/Bortlesboat/x402-insights/issues/21",
+      "artifactType": "github_issue",
+      "lastVerified": "2026-05-21"
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "dashboard_desktop",
+      "label": "Desktop dashboard screenshot",
+      "url": "https://bortlesboat.github.io/x402-insights/agentops-ledger-dashboard.png",
+      "alt": "Agent Payment Ledger dashboard showing run timelines, risk flags, approvals, payments, and spend evidence."
+    },
+    {
+      "id": "dashboard_mobile",
+      "label": "Mobile dashboard screenshot",
+      "url": "https://bortlesboat.github.io/x402-insights/agentops-ledger-mobile.png",
+      "alt": "Mobile Agent Payment Ledger dashboard screenshot."
+    },
+    {
+      "id": "video_thumbnail",
+      "label": "Video thumbnail",
+      "url": "https://bortlesboat.github.io/x402-insights/agentops-ledger-video-thumbnail.png",
+      "alt": "Agent Payment Ledger video thumbnail."
+    }
+  ],
+  "openBlockers": [
+    {
+      "id": "splunk_devpost_submission",
+      "status": "pending_account_gated_submission",
+      "description": "Splunk Agentic Ops Devpost packet is prepared but not submitted."
+    },
+    {
+      "id": "techex_lablab_submission",
+      "status": "pending_account_gated_submission",
+      "description": "TechEx/lablab packet and slides exist, but no platform submission proof is claimed."
+    },
+    {
+      "id": "microsoft_agent_academy_submission",
+      "status": "pending_account_gated_submission",
+      "description": "Microsoft Graph probe evidence exists, but Microsoft Agent Academy submission and outcomes are not claimed."
+    },
+    {
+      "id": "social_launch",
+      "status": "pending_account_choice",
+      "description": "Broader social launch post has not been posted from the intended account."
+    },
+    {
+      "id": "judging_outcomes",
+      "status": "not_claimed",
+      "description": "No prize, judging result, selected-project status, Splunk AI execution proof, Hosted Models execution proof, or MCP execution proof is claimed."
+    }
+  ],
+  "caveats": [
+    "Prepared submission packets are not treated as submitted until a public platform URL or explicit confirmation is recorded.",
+    "Local Splunk HEC proof demonstrates indexed run_event telemetry; it does not claim Splunk AI Assistant, Hosted Models, or MCP Server execution proof.",
+    "The project is not affiliated with AgentOps.ai; any AgentOps.ai contribution is only a local draft until Andy explicitly approves an upstream PR.",
+    "The proof page is local repo state until the repository is published and GitHub Pages rebuilds."
+  ]
+}

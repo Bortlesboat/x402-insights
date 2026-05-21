@@ -1,5 +1,7 @@
 # AgentOps Ledger Design
 
+Historical note: this 2026-05-18 planning document uses the earlier working name. The current public project name is Agent Payment Ledger, and it is not affiliated with AgentOps.ai.
+
 **Date:** 2026-05-18
 **Primary target:** NandaHack Agentic AI Hackathon
 **Secondary targets:** Splunk Agentic Ops Hackathon, Google Cloud Rapid Agent Hackathon, UiPath AgentHack

@@ -1,6 +1,6 @@
 # Splunk MCP Tool Map
 
-This file maps the AgentOps Ledger investigation pack to the official Splunk MCP Server vocabulary without claiming that the public proof executed MCP calls.
+This file maps the Agent Payment Ledger investigation pack to the official Splunk MCP Server vocabulary without claiming that the public proof executed MCP calls.
 
 ## Official Alignment
 
@@ -12,9 +12,9 @@ Useful public references:
 - Splunk MCP Server tools: https://help.splunk.com/en/splunk-enterprise/mcp-server-for-splunk-platform/mcp-server-tools
 - Splunk Agentic Ops Hackathon: https://splunk.devpost.com/
 
-## AgentOps Query Mapping
+## Payment-Ledger Query Mapping
 
-All searches in `searches.json` target verified AgentOps Ledger telemetry exported through HTTP Event Collector:
+All searches in `searches.json` target verified Agent Payment Ledger telemetry exported through HTTP Event Collector with historical evidence names:
 
 - `index=agentops`
 - `source=agentops-ledger`
@@ -43,8 +43,8 @@ If Splunk AI Assistant for SPL is installed, an operator can use the `ai_assista
 
 Verified public proof:
 
-- AgentOps Ledger exported `run_demo_vendor_blocked` through Splunk HEC.
+- Agent Payment Ledger exported `run_demo_vendor_blocked` through Splunk HEC.
 - Splunk indexed five `agentops-ledger` events as `agentops:run_event`.
 - The public proof packet documents the indexed telemetry path.
 
-This file does not claim MCP execution proof, Splunk AI Assistant execution proof, Hosted Models execution proof, judging status, or prize outcome. It is a submission aid that shows exactly how the existing AgentOps telemetry maps to official Splunk MCP Server tools once a logged-in Splunk MCP environment is available.
+This file does not claim MCP execution proof, Splunk AI Assistant execution proof, Hosted Models execution proof, judging status, or prize outcome. It is a submission aid that shows exactly how the existing payment-ledger telemetry maps to official Splunk MCP Server tools once a logged-in Splunk MCP environment is available.

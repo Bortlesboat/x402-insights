@@ -1,5 +1,7 @@
 # AgentOps Ledger Implementation Plan
 
+Historical note: this 2026-05-18 implementation plan uses the earlier working name. The current public project name is Agent Payment Ledger, and it is not affiliated with AgentOps.ai.
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Turn `x402-insights` into AgentOps Ledger, a local-first enterprise-agent flight recorder with run timelines, approval/payment/tool-call events, audit export, and hackathon-ready packaging.

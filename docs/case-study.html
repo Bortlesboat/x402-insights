@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AgentOps Ledger Case Study | Enterprise Agent Flight Recorder</title>
+    <title>Agent Payment Ledger Case Study | Paid-Agent Audit Trail</title>
     <meta
       name="description"
-      content="Case study for AgentOps Ledger, a 2026 enterprise-agent infrastructure tool for run evidence, approval gates, x402 payments, audit export, and Splunk-ready telemetry."
+      content="Case study for Agent Payment Ledger, a 2026 paid-agent infrastructure tool for run evidence, approval gates, x402 payments, audit export, and Splunk-ready telemetry."
     />
     <link rel="canonical" href="https://bortlesboat.github.io/x402-insights/case-study.html" />
+    <link rel="alternate" type="application/json" href="proof.json" title="Agent Payment Ledger proof graph" />
+    <link rel="alternate" type="text/plain" href="llms.txt" title="Agent Payment Ledger llms.txt" />
     <meta name="theme-color" content="#f5f2ec" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="AgentOps Ledger case study" />
+    <meta property="og:title" content="Agent Payment Ledger case study" />
     <meta
       property="og:description"
       content="Built for 2026 enterprise-agent hackathons: run timelines, approvals, payments, audit JSON, and Splunk HEC telemetry."
     />
     <meta property="og:url" content="https://bortlesboat.github.io/x402-insights/case-study.html" />
     <meta property="og:image" content="https://bortlesboat.github.io/x402-insights/agentops-ledger-dashboard.png" />
-    <meta property="og:image:alt" content="AgentOps Ledger dashboard showing run timelines, risk flags, and spend evidence" />
+    <meta property="og:image:alt" content="Agent Payment Ledger dashboard showing run timelines, risk flags, and spend evidence" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AgentOps Ledger case study" />
+    <meta name="twitter:title" content="Agent Payment Ledger case study" />
     <meta
       name="twitter:description"
       content="A public case study for enterprise-agent run evidence, approval gates, x402 payments, and Splunk-ready telemetry."
@@ -375,13 +377,14 @@
   </head>
   <body>
     <header class="shell nav">
-      <a class="brand" href="./" aria-label="AgentOps Ledger home">
+      <a class="brand" href="./" aria-label="Agent Payment Ledger home">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-        <span>AgentOps Ledger</span>
+        <span>Agent Payment Ledger</span>
       </a>
       <nav class="nav-links" aria-label="Project links">
         <a href="./">Demo</a>
         <a href="launch.html">Launch page</a>
+        <a href="proof.html">Proof graph</a>
         <a href="https://github.com/Bortlesboat/x402-insights">Repository</a>
         <a href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">Architecture</a>
         <a href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-hec-proof.md">Splunk HEC proof</a>
@@ -397,19 +400,20 @@
       <section class="shell hero">
         <div>
           <p class="eyebrow">Built for 2026 enterprise-agent hackathons</p>
-          <h1>AgentOps Ledger case study</h1>
+          <h1>Agent Payment Ledger case study</h1>
           <p class="lead">
-            A flight recorder for production-like agents: every tool call, approval gate, retry, error,
+            A payment-aware ledger for production-like agents: every tool call, approval gate, retry, error,
             x402 payment, and final outcome becomes inspectable run evidence.
           </p>
           <div class="hero-actions">
             <a class="button" href="launch.html">Open launch page</a>
+            <a class="button" href="proof.html">Open proof graph</a>
             <a class="button" href="https://github.com/Bortlesboat/x402-insights">Open the repository</a>
             <a class="button secondary" href="https://bortlesboat.github.io/x402-insights/">View hosted demo</a>
           </div>
         </div>
         <aside class="evidence-card" aria-label="Case study evidence">
-          <img src="agentops-ledger-dashboard.png" alt="AgentOps Ledger dashboard with run timelines, risk flags, and spend breakdowns" />
+          <img src="agentops-ledger-dashboard.png" alt="Agent Payment Ledger dashboard with run timelines, risk flags, and spend breakdowns" />
           <div class="metric-grid">
             <div class="metric"><strong>3</strong><span>deterministic demo runs</span></div>
             <div class="metric"><strong>5</strong><span>blocked-run events indexed in Splunk</span></div>
@@ -509,7 +513,7 @@
         <div class="section-head">
           <h2>Hackathon fit</h2>
           <p>
-            AgentOps Ledger is positioned as infrastructure, not a novelty demo. It gives a stock agent a
+            Agent Payment Ledger is positioned as infrastructure, not a novelty demo. It gives a stock agent a
             practical trust, audit, and observability layer.
           </p>
         </div>
@@ -541,6 +545,13 @@
               <p>Shareable evidence board with the hosted video, Splunk packet, MCP map, and open gates.</p>
             </div>
             <span>Open launch page</span>
+          </a>
+          <a class="link-card" href="https://bortlesboat.github.io/x402-insights/proof.html">
+            <div>
+              <h3>Proof graph</h3>
+              <p>One root for status, proof links, screenshots, blockers, last verification date, and machine-readable JSON.</p>
+            </div>
+            <span>Open proof graph</span>
           </a>
           <a class="link-card" href="https://github.com/Bortlesboat/x402-insights">
             <div>
@@ -624,7 +635,7 @@
     </main>
 
     <footer class="shell footer">
-      AgentOps Ledger is public hackathon infrastructure evidence. Submission outcomes are tracked in
+      Agent Payment Ledger is public hackathon infrastructure evidence and is not affiliated with AgentOps.ai. Submission outcomes are tracked in
       <a href="https://github.com/Bortlesboat/x402-insights/issues/10">GitHub issue #10</a> and only claimed after confirmation.
     </footer>
   </body>

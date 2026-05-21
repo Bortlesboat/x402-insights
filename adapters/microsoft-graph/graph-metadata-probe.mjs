@@ -72,7 +72,7 @@ export function buildGraphMetadataRun({ checkedAt, durationMs, summary, status =
         timestamp: checkedAt,
         event_type: "run_finished",
         status,
-        summary: "Microsoft Graph metadata inspected and converted into AgentOps Ledger run evidence.",
+        summary: "Microsoft Graph metadata inspected and converted into Agent Payment Ledger run evidence.",
       },
     ],
   };

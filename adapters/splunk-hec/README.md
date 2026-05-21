@@ -1,6 +1,6 @@
 # Splunk HEC Adapter
 
-Export one AgentOps Ledger run into Splunk through HTTP Event Collector.
+Export one Agent Payment Ledger run into Splunk through HTTP Event Collector.
 
 ```powershell
 $env:AGENTOPS_BASE_URL = "http://localhost:4000"
@@ -14,7 +14,7 @@ node adapters/splunk-hec/export-run-to-hec.mjs
 
 If `SPLUNK_HEC_URL` is a base Splunk URL, the adapter appends `/services/collector/event`. You can also pass the full HEC event endpoint.
 
-The adapter sends each AgentOps event as newline-delimited HEC JSON with `source=agentops-ledger` and `sourcetype=agentops:run_event`.
+The adapter sends each payment-ledger event as newline-delimited HEC JSON with historical `source=agentops-ledger` and `sourcetype=agentops:run_event`.
 
 ## Investigation Pack
 

@@ -113,7 +113,7 @@ async function main() {
     await postEvent({
       ...base,
       event_type: "run_start",
-      endpoint: "agentops://run/start",
+      endpoint: "payment-ledger://run/start",
       cost: 0,
       metadata: { vendor: "Acme Supplies" },
     });
@@ -146,7 +146,7 @@ async function main() {
     await postEvent({
       ...base,
       event_type: "run_finish",
-      endpoint: "agentops://run/finish",
+      endpoint: "payment-ledger://run/finish",
       cost: 0,
       summary: "Vendor risk review completed after human approval.",
     });

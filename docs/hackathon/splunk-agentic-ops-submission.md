@@ -1,6 +1,6 @@
 # Splunk Agentic Ops Submission Packet
 
-This is the public, judge-facing submission packet for AgentOps Ledger and the Splunk Agentic Ops Hackathon.
+This is the public, judge-facing submission packet for Agent Payment Ledger and the Splunk Agentic Ops Hackathon.
 
 Current status: the project is ready for the Splunk Devpost form, but the final Devpost project URL is not recorded yet. The public Splunk Devpost page still showed `Submissions open soon` during the latest local status check on 2026-05-18.
 
@@ -10,20 +10,20 @@ Primary track: **Platform & Developer Experience**
 
 Backup track: **Observability**
 
-Why: AgentOps Ledger helps agent builders and platform teams turn hidden agent behavior into searchable operational evidence. The Splunk integration takes run events from an enterprise-agent workflow and makes them available as `agentops:run_event` telemetry for search, alerting, and incident-style investigation.
+Why: Agent Payment Ledger helps agent builders and platform teams turn hidden agent behavior into searchable operational evidence. The Splunk integration takes run events from an enterprise-agent workflow and makes them available as `agentops:run_event` telemetry for search, alerting, and incident-style investigation.
 
 Official hackathon page: https://splunk.devpost.com/
 
 ## Project
 
 Title:
-AgentOps Ledger
+Agent Payment Ledger
 
 Tagline:
 Turn every enterprise-agent run into Splunk-ready operational telemetry.
 
 Description:
-AgentOps Ledger is a flight recorder for enterprise agents. It records tool calls, approval gates, retries, errors, x402-style payments, and final outcomes in one append-only run ledger. The dashboard lets teams inspect recent runs, drill into event timelines, see risk flags, and export a complete audit JSON packet.
+Agent Payment Ledger is a payment-aware audit trail for autonomous agents. It records tool calls, approval gates, retries, errors, x402-style payments, and final outcomes in one append-only run ledger. The dashboard lets teams inspect recent runs, drill into event timelines, see risk flags, and export a complete audit JSON packet.
 
 For Splunk, the HEC adapter exports selected runs into Splunk as `agentops:run_event` telemetry. Once indexed, teams can search failed runs, alert on rejected approvals, correlate paid API spend with incidents, and review agent behavior with the same evidence humans see in the dashboard.
 
@@ -41,11 +41,11 @@ The demo models a vendor-risk agent that:
 - records a blocked high-risk payment after human rejection
 - emits final run status and audit JSON
 
-AgentOps Ledger is framework-neutral: LangGraph, CrewAI, MCP-based tools, custom scripts, or x402-enabled agents can emit the same run evidence.
+Agent Payment Ledger is framework-neutral: LangGraph, CrewAI, MCP-based tools, custom scripts, or x402-enabled agents can emit the same run evidence.
 
 ## How Splunk Is Used
 
-`adapters/splunk-hec/export-run-to-hec.mjs` calls AgentOps Ledger's `/api/runs/:run_id/export` endpoint, transforms every run event into HEC JSON, and posts newline-delimited events to `/services/collector/event`.
+`adapters/splunk-hec/export-run-to-hec.mjs` calls Agent Payment Ledger's `/api/runs/:run_id/export` endpoint, transforms every run event into HEC JSON, and posts newline-delimited events to `/services/collector/event`.
 
 The exported events use:
 

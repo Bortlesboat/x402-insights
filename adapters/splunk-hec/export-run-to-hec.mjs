@@ -130,7 +130,7 @@ async function main() {
     host: process.env.SPLUNK_HOST,
   });
 
-  console.log(`Exported ${result.sent} AgentOps Ledger events for ${result.runId} to Splunk HEC`);
+  console.log(`Exported ${result.sent} Agent Payment Ledger events for ${result.runId} to Splunk HEC`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

@@ -1,5 +1,5 @@
 /**
- * Seed deterministic AgentOps Ledger demo runs.
+ * Seed deterministic Agent Payment Ledger demo runs.
  * Run while the server is up:
  *   npm run seed
  */
@@ -37,7 +37,7 @@ function event(run, offsetMs, event) {
     retry_count: event.retry_count ?? 0,
     is_retry: event.is_retry ?? false,
     cost: event.cost ?? 0,
-    endpoint: event.endpoint ?? `agentops://${event.event_type}`,
+    endpoint: event.endpoint ?? `payment-ledger://${event.event_type}`,
     ...event,
   };
 }
@@ -58,14 +58,14 @@ async function main() {
     {
       offsetMs: 0,
       event_type: "run_start",
-      endpoint: "agentops://run/start",
+      endpoint: "payment-ledger://run/start",
       metadata: { vendor: "Acme Supplies", amount: 42000 },
     },
     {
       offsetMs: 600,
       event_type: "step",
       step_name: "plan_review",
-      endpoint: "agentops://step/plan_review",
+      endpoint: "payment-ledger://step/plan_review",
       metadata: { objective: "review vendor before paid enrichment" },
     },
     {
@@ -97,7 +97,7 @@ async function main() {
     {
       offsetMs: 5600,
       event_type: "run_finish",
-      endpoint: "agentops://run/finish",
+      endpoint: "payment-ledger://run/finish",
       summary: "Vendor cleared after records search, approval, and paid enrichment.",
     },
   ]);
@@ -111,7 +111,7 @@ async function main() {
     {
       offsetMs: 8000,
       event_type: "run_start",
-      endpoint: "agentops://run/start",
+      endpoint: "payment-ledger://run/start",
       metadata: { vendor: "Northwind Parts" },
     },
     {
@@ -148,7 +148,7 @@ async function main() {
     {
       offsetMs: 13900,
       event_type: "run_finish",
-      endpoint: "agentops://run/finish",
+      endpoint: "payment-ledger://run/finish",
       summary: "Supplier profile completed after one retry.",
     },
   ]);
@@ -162,7 +162,7 @@ async function main() {
     {
       offsetMs: 17000,
       event_type: "run_start",
-      endpoint: "agentops://run/start",
+      endpoint: "payment-ledger://run/start",
       metadata: { vendor: "Unverified Logistics", amount: 88000 },
     },
     {
@@ -192,14 +192,14 @@ async function main() {
     {
       offsetMs: 20700,
       event_type: "run_finish",
-      endpoint: "agentops://run/finish",
+      endpoint: "payment-ledger://run/finish",
       status: "error",
       error: "human approval rejected",
       summary: "Payment blocked by human approval gate.",
     },
   ]);
 
-  console.log("seeded 3 AgentOps Ledger demo runs");
+  console.log("seeded 3 Agent Payment Ledger demo runs");
 }
 
 main().catch((err) => {

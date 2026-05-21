@@ -1,13 +1,15 @@
-# AgentOps Ledger Architecture
+# Agent Payment Ledger Architecture
 
-AgentOps Ledger is an append-only flight recorder for enterprise agents. It records agent runs locally, renders an operations dashboard, exports audit JSON, and can forward run events into Splunk through HTTP Event Collector (HEC).
+Agent Payment Ledger is an append-only payment-aware audit trail for autonomous agents. It records agent runs locally, renders an operations dashboard, exports audit JSON, and can forward run events into Splunk through HTTP Event Collector (HEC).
+
+It is not affiliated with AgentOps.ai. Historical Splunk source and sourcetype names still use `agentops-ledger` / `agentops:run_event` because those names are part of the existing evidence packet.
 
 ```mermaid
 flowchart LR
   Agent["Enterprise agent workflow<br/>LangGraph, CrewAI, MCP tools, custom scripts"]
-  SDK["AgentOps Ledger SDK<br/>startRun / trackToolCall / trackApproval / trackPayment / finishRun"]
+  SDK["Agent Payment Ledger SDK<br/>startRun / trackToolCall / trackApproval / trackPayment / finishRun"]
   Paid["Paid APIs and x402 facilitators<br/>verify / settle lifecycle"]
-  Server["AgentOps Ledger server<br/>Express ingestion API"]
+  Server["Agent Payment Ledger server<br/>Express ingestion API"]
   DB[("SQLite audit ledger<br/>runs + append-only events")]
   Dashboard["Local ops dashboard<br/>timelines, risk flags, spend, export"]
   Export["Run export API<br/>/api/runs/:run_id/export"]

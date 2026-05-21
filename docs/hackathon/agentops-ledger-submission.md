@@ -1,8 +1,8 @@
-# AgentOps Ledger Hackathon Submission Draft
+# Agent Payment Ledger Hackathon Submission Draft
 
 ## Title
 
-AgentOps Ledger
+Agent Payment Ledger
 
 ## Public Links
 
@@ -34,7 +34,7 @@ Enterprise teams cannot safely hand agents real tools until they can answer what
 
 ## Solution
 
-AgentOps Ledger records agent runs as append-only events and renders them as an operations dashboard. Developers add a small SDK wrapper around workflows and tool calls. The server stores events in SQLite, groups them by run, computes risk flags, and exports audit JSON for review.
+Agent Payment Ledger records agent runs as append-only events and renders them as an operations dashboard. Developers add a small SDK wrapper around workflows and tool calls. The server stores events in SQLite, groups them by run, computes risk flags, and exports audit JSON for review.
 
 ## Target Users
 
@@ -93,23 +93,23 @@ Click `export JSON`. Explain that the output can be stored with incident reviews
 
 ### 6. Close
 
-"AgentOps Ledger makes agents inspectable before they become production systems."
+"Agent Payment Ledger makes agents inspectable before they become production systems."
 
 ## NandaHack Framing
 
-AgentOps Ledger is practical trust infrastructure for enterprise agents. It supports the core enterprise needs NandaHack emphasizes: safety, integration, coordination, and production-like evaluation. The demo is deliberately simple enough for a stock agent workflow to use without platform lock-in.
+Agent Payment Ledger is practical trust infrastructure for enterprise agents. It supports the core enterprise needs NandaHack emphasizes: safety, integration, coordination, and production-like evaluation. The demo is deliberately simple enough for a stock agent workflow to use without platform lock-in.
 
 ## Splunk Agentic Ops Framing
 
-AgentOps Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index. The Splunk investigation pack adds reusable SPL searches, `splunk_run_query` MCP tool mapping, and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over the indexed events. The dedicated Splunk submission packet keeps the no-MCP-execution-proof boundary explicit.
+Agent Payment Ledger turns agent behavior into operational telemetry. The Splunk HEC adapter exports each run event as `agentops:run_event` telemetry so security, reliability, and cost investigations can happen in Splunk. A local Splunk Enterprise proof run indexed the blocked demo run as five `agentops-ledger` events in the `agentops` index. The Splunk investigation pack adds reusable SPL searches, `splunk_run_query` MCP tool mapping, and prompt templates for Splunk AI Assistant or Splunk MCP Server workflows over the indexed events. The dedicated Splunk submission packet keeps the no-MCP-execution-proof boundary explicit.
 
 ## Google Rapid Agent Framing
 
-AgentOps Ledger can wrap Gemini or MCP-style tool workflows and make partner-system calls visible. The value is not a new model; it is the operational evidence layer around agent behavior.
+Agent Payment Ledger can wrap Gemini or MCP-style tool workflows and make partner-system calls visible. The value is not a new model; it is the operational evidence layer around agent behavior.
 
 ## UiPath AgentHack Framing
 
-AgentOps Ledger complements enterprise automation by showing human approval gates and final outcomes around agentic workflow execution.
+Agent Payment Ledger complements enterprise automation by showing human approval gates and final outcomes around agentic workflow execution.
 
 ## Screenshot Checklist
 

@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AgentOps Ledger | Enterprise Agent Flight Recorder</title>
+    <title>Agent Payment Ledger | Paid-Agent Audit Trail</title>
     <meta
       name="description"
-      content="AgentOps Ledger records enterprise-agent tool calls, approvals, retries, payments, errors, and final outcomes in one inspectable audit trail."
+      content="Agent Payment Ledger records paid-agent tool calls, approvals, retries, x402 payments, errors, and final outcomes in one inspectable audit trail."
     />
     <link rel="canonical" href="https://bortlesboat.github.io/x402-insights/" />
+    <link rel="alternate" type="application/json" href="proof.json" title="Agent Payment Ledger proof graph" />
+    <link rel="alternate" type="text/plain" href="llms.txt" title="Agent Payment Ledger llms.txt" />
     <meta name="theme-color" content="#f5f2ec" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="AgentOps Ledger | Enterprise Agent Flight Recorder" />
+    <meta property="og:title" content="Agent Payment Ledger | Paid-Agent Audit Trail" />
     <meta
       property="og:description"
       content="Inspect tool calls, approval gates, retries, errors, x402 payments, and final outcomes in one enterprise-agent audit trail."
     />
     <meta property="og:url" content="https://bortlesboat.github.io/x402-insights/" />
     <meta property="og:image" content="https://bortlesboat.github.io/x402-insights/agentops-ledger-dashboard.png" />
-    <meta property="og:image:alt" content="AgentOps Ledger dashboard with run timelines, risk flags, and spend breakdowns" />
+    <meta property="og:image:alt" content="Agent Payment Ledger dashboard with run timelines, risk flags, and spend breakdowns" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AgentOps Ledger | Enterprise Agent Flight Recorder" />
+    <meta name="twitter:title" content="Agent Payment Ledger | Paid-Agent Audit Trail" />
     <meta
       name="twitter:description"
       content="A hosted demo for enterprise-agent run evidence, approval gates, x402 payments, and Splunk-ready telemetry."
@@ -404,13 +406,14 @@
   </head>
   <body>
     <header class="shell nav">
-      <div class="brand" aria-label="AgentOps Ledger">
+      <div class="brand" aria-label="Agent Payment Ledger">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-        <span>AgentOps Ledger</span>
+        <span>Agent Payment Ledger</span>
       </div>
       <nav class="nav-links" aria-label="Project links">
         <a href="launch.html">Launch page</a>
         <a href="case-study.html">Case study</a>
+        <a href="proof.html">Proof graph</a>
         <a href="https://github.com/Bortlesboat/x402-insights">Repository</a>
         <a href="https://github.com/Bortlesboat/x402-insights/blob/main/ARCHITECTURE.md">Architecture</a>
         <a href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/splunk-agentic-ops-submission.md">Splunk submission</a>
@@ -429,13 +432,14 @@
       <section class="shell hero">
         <div>
           <p class="eyebrow">Enterprise agent infrastructure</p>
-          <h1>AgentOps Ledger</h1>
+          <h1>Agent Payment Ledger</h1>
           <p class="lead">
-            A flight recorder for enterprise agents. Inspect tool calls, approval gates, retries, errors,
+            A payment-aware ledger for autonomous agents. Inspect tool calls, approval gates, retries, errors,
             x402 payments, and final outcomes in one audit trail.
           </p>
           <div class="hero-actions">
             <a class="button" href="launch.html">Open launch page</a>
+            <a class="button" href="proof.html">Open proof graph</a>
             <a class="button" href="case-study.html">Read the case study</a>
             <a class="button secondary" href="https://github.com/Bortlesboat/x402-insights">View the repo</a>
             <a
@@ -452,7 +456,7 @@
           </div>
         </div>
         <figure class="screenshot-frame">
-          <img src="agentops-ledger-dashboard.png" alt="AgentOps Ledger dashboard showing agent run timelines and risk flags" />
+          <img src="agentops-ledger-dashboard.png" alt="Agent Payment Ledger dashboard showing agent run timelines and risk flags" />
         </figure>
       </section>
 
@@ -487,7 +491,7 @@
         <div class="section-head">
           <h2>Small SDK surface</h2>
           <p>
-            AgentOps Ledger works around existing agent runtimes. Wrap the workflow, emit events, and keep
+            Agent Payment Ledger works around existing agent runtimes. Wrap the workflow, emit events, and keep
             the agent stack you already use.
           </p>
         </div>
@@ -541,6 +545,20 @@ await finishRun({
               <p>Shareable evidence board with the hosted video, Splunk packet, MCP map, and honest open gates.</p>
             </div>
             <span>Open launch page</span>
+          </a>
+          <a class="link-card" href="proof.html">
+            <div>
+              <h3>Proof graph</h3>
+              <p>Canonical root for current status, proof nodes, screenshots, blockers, last-verified date, and proof JSON.</p>
+            </div>
+            <span>Open proof graph</span>
+          </a>
+          <a class="link-card" href="agentops-ai-upstream-contribution-draft.md">
+            <div>
+              <h3>AgentOps.ai contribution draft</h3>
+              <p>Local-only x402 paid-API telemetry example plan for the real AgentOps.ai project, with no affiliation claim.</p>
+            </div>
+            <span>Open draft</span>
           </a>
           <a class="link-card" href="case-study.html">
             <div>
@@ -608,7 +626,7 @@ await finishRun({
           <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-agent-academy-special-ops.md">
             <div>
               <h3>Agent Academy Special Ops</h3>
-              <p>Microsoft Graph API route for recording a read-only external-system probe as AgentOps evidence.</p>
+              <p>Microsoft Graph API route for recording a read-only external-system probe as payment-ledger evidence.</p>
             </div>
             <span>Open packet</span>
           </a>
@@ -622,7 +640,7 @@ await finishRun({
           <a class="link-card" href="https://github.com/Bortlesboat/x402-insights/blob/main/docs/hackathon/microsoft-graph-metadata-probe.json">
             <div>
               <h3>Graph probe evidence</h3>
-              <p>Live public Microsoft Graph API metadata probe captured as AgentOps Ledger event JSON.</p>
+              <p>Live public Microsoft Graph API metadata probe captured as Agent Payment Ledger event JSON.</p>
             </div>
             <span>Open JSON</span>
           </a>
@@ -672,8 +690,8 @@ await finishRun({
     </main>
 
     <footer class="shell footer">
-      Built for NandaHack, Splunk Agentic Ops, and 2026 enterprise-agent infrastructure evaluations. Outcomes are tracked in
-      <a href="https://github.com/Bortlesboat/x402-insights/issues/10">GitHub issue #10</a>.
+      Built for NandaHack, Splunk Agentic Ops, and 2026 enterprise-agent infrastructure evaluations. Agent Payment Ledger is not affiliated with
+      AgentOps.ai. Outcomes are tracked in <a href="https://github.com/Bortlesboat/x402-insights/issues/10">GitHub issue #10</a>.
     </footer>
   </body>
 </html>

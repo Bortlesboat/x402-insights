@@ -1,6 +1,6 @@
 # Microsoft Graph Adapter
 
-This adapter opens a narrow Microsoft Agent Academy route for AgentOps Ledger by probing the public Microsoft Graph API metadata endpoint and converting that tool call into AgentOps Ledger run evidence.
+This adapter opens a narrow Microsoft Agent Academy route for Agent Payment Ledger by probing the public Microsoft Graph API metadata endpoint and converting that tool call into Agent Payment Ledger run evidence.
 
 ```powershell
 node adapters/microsoft-graph/graph-metadata-probe.mjs --json
@@ -30,7 +30,7 @@ This is intentionally credential-free:
 
 ## Why This Exists
 
-The Microsoft Agent Academy Hackathon requires a working agent aligned with the Microsoft AI ecosystem. Microsoft Graph API is one listed Microsoft service in the official rules. This adapter gives reviewers a small, inspectable way to see how AgentOps Ledger records a Microsoft Graph tool call without exposing secrets.
+The Microsoft Agent Academy Hackathon requires a working agent aligned with the Microsoft AI ecosystem. Microsoft Graph API is one listed Microsoft service in the official rules. This adapter gives reviewers a small, inspectable way to see how Agent Payment Ledger records a Microsoft Graph tool call without exposing secrets.
 
 ## Test
 

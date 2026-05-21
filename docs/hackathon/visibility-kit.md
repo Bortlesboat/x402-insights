@@ -1,8 +1,8 @@
-# AgentOps Ledger Visibility Kit
+# Agent Payment Ledger Visibility Kit
 
 ## Primary Launch Goal
 
-Use AgentOps Ledger to create visible proof that x402-insights is no longer only payment telemetry. It is an enterprise-agent infrastructure tool: a flight recorder for tool calls, approvals, retries, errors, payments, and final outcomes.
+Use Agent Payment Ledger to create visible proof that x402-insights is no longer only payment telemetry. It is an enterprise-agent infrastructure tool: a flight recorder for tool calls, approvals, retries, errors, payments, and final outcomes.
 
 ## Audience
 
@@ -16,12 +16,12 @@ Use AgentOps Ledger to create visible proof that x402-insights is no longer only
 
 Agents do not just need better models. They need a trustworthy run record.
 
-AgentOps Ledger gives every enterprise agent a local audit trail: what it did, what it spent, where it failed, and where a human stayed in control.
+Agent Payment Ledger gives every enterprise agent a local audit trail: what it did, what it spent, where it failed, and where a human stayed in control.
 
 ## X Launch Post
 
 ```text
-Built AgentOps Ledger: a flight recorder for enterprise agents.
+Built Agent Payment Ledger: a payment-aware audit trail for autonomous agents.
 
 It records every tool call, approval gate, retry, error, payment, and final outcome in one local audit trail.
 
@@ -46,7 +46,7 @@ The hard questions are simple:
 - Where did it fail?
 - Where did a human approve or reject action?
 
-2/ AgentOps Ledger records those events as an append-only run timeline.
+2/ Agent Payment Ledger records those events as an append-only run timeline.
 
 Event types:
 - run_start
@@ -73,13 +73,13 @@ The frontier is production infrastructure: observability, controls, auditability
 ## LinkedIn Post
 
 ```text
-I built AgentOps Ledger, a local-first flight recorder for enterprise agents.
+I built Agent Payment Ledger, a local-first payment-aware audit trail for autonomous agents.
 
 Most agent demos show the final answer. That is not enough for real workflows.
 
 If an agent can call tools, spend money, retry failed actions, or wait for human approval, teams need a run record they can inspect later.
 
-AgentOps Ledger records:
+Agent Payment Ledger records:
 - tool calls
 - approval gates
 - retries and errors
@@ -105,12 +105,12 @@ Target length: 90 seconds.
 5. Show the approval request, rejection, final error, and risk flag.
 6. Click the successful run and show the payment event.
 7. Click export JSON.
-8. Close with: "AgentOps Ledger makes agents inspectable before they become production systems."
+8. Close with: "Agent Payment Ledger makes agents inspectable before they become production systems."
 
 ## Short Devpost/NandaHack Copy
 
 ```text
-AgentOps Ledger is a flight recorder for enterprise agents. It records every tool call, approval gate, retry, error, payment, and final outcome in one local audit trail.
+Agent Payment Ledger is a payment-aware audit trail for autonomous agents. It records every tool call, approval gate, retry, error, payment, and final outcome in one local audit trail.
 
 The demo uses a vendor-risk review agent with three runs: a successful approval-gated workflow, a flaky tool retry, and a high-risk payment blocked by human approval.
 

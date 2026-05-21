@@ -1,8 +1,8 @@
-# AgentOps Ledger Splunk Investigation Pack
+# Agent Payment Ledger Splunk Investigation Pack
 
-This pack turns AgentOps Ledger `agentops:run_event` telemetry into reusable Splunk searches and AI investigation prompts.
+This pack turns Agent Payment Ledger `agentops:run_event` telemetry into reusable Splunk searches and AI investigation prompts.
 
-It assumes runs have been exported through the AgentOps Ledger Splunk HTTP Event Collector adapter with:
+It assumes runs have been exported through the Agent Payment Ledger Splunk HTTP Event Collector adapter with historical evidence names:
 
 - `source=agentops-ledger`
 - `sourcetype=agentops:run_event`

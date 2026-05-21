@@ -52,7 +52,7 @@
       "timestamp": "2026-05-18T15:57:43.045Z",
       "event_type": "run_finished",
       "status": "success",
-      "summary": "Microsoft Graph metadata inspected and converted into AgentOps Ledger run evidence."
+      "summary": "Microsoft Graph metadata inspected and converted into Agent Payment Ledger run evidence."
     }
   ]
 }

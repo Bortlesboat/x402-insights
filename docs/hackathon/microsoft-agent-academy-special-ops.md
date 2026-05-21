@@ -2,7 +2,7 @@
 
 Status: Not submitted.
 
-AgentOps Ledger is being prepared for the Microsoft Agent Academy Hackathon as a Special Ops route, not claimed as an entered project yet.
+Agent Payment Ledger is being prepared for the Microsoft Agent Academy Hackathon as a Special Ops route, not claimed as an entered project yet.
 
 ## Official Source Facts
 
@@ -14,11 +14,11 @@ AgentOps Ledger is being prepared for the Microsoft Agent Academy Hackathon as a
 - Submission path: GitHub issue template at https://aka.ms/agent-academy-hack/submit
 - Required Microsoft ecosystem component: Microsoft Graph API, Azure OpenAI Service, Copilot Studio, Power Automate, or another official Microsoft AI ecosystem component named by the rules.
 
-## Why AgentOps Ledger Fits Special Ops
+## Why Agent Payment Ledger Fits Special Ops
 
-AgentOps Ledger is infrastructure for making agent behavior inspectable. It records tool calls, approval gates, retries, errors, x402-style payments, external-system use, and final outcomes in one local run ledger.
+Agent Payment Ledger is infrastructure for making agent behavior inspectable. It records tool calls, approval gates, retries, errors, x402-style payments, external-system use, and final outcomes in one local run ledger.
 
-The Special Ops track explicitly fits advanced scenarios such as MCP integrations, external systems, advanced actions, structured outputs, and evaluation patterns. AgentOps Ledger turns those patterns into reviewable evidence.
+The Special Ops track explicitly fits advanced scenarios such as MCP integrations, external systems, advanced actions, structured outputs, and evaluation patterns. Agent Payment Ledger turns those patterns into reviewable evidence.
 
 ## Microsoft Graph API Route
 
@@ -32,7 +32,7 @@ The adapter probes the public Microsoft Graph API metadata endpoint:
 https://graph.microsoft.com/v1.0/$metadata
 ```
 
-It emits an AgentOps Ledger run named `run_microsoft_graph_metadata_probe` for `agent-academy-special-ops-agent`, with a `microsoft.graph.metadata` tool-call event and a no-approval-required event explaining that no tenant, user, or payment data was accessed.
+It emits an Agent Payment Ledger run named `run_microsoft_graph_metadata_probe` for `agent-academy-special-ops-agent`, with a `microsoft.graph.metadata` tool-call event and a no-approval-required event explaining that no tenant, user, or payment data was accessed.
 
 Public live probe evidence:
 
@@ -43,19 +43,19 @@ This is the smallest safe Microsoft ecosystem proof path because it uses Microso
 ## Submission Copy
 
 Title:
-AgentOps Ledger
+Agent Payment Ledger
 
 Track:
 Special Ops
 
 Short description:
-AgentOps Ledger is a flight recorder for enterprise agents. It records tool calls, approvals, retries, errors, Microsoft Graph API probes, x402-style payments, and final outcomes as inspectable run evidence.
+Agent Payment Ledger is a payment-aware audit trail for autonomous agents. It records tool calls, approvals, retries, errors, Microsoft Graph API probes, x402-style payments, and final outcomes as inspectable run evidence.
 
 Target user:
 Platform, security, and operations teams that need to understand what an enterprise agent did before trusting it with external systems.
 
 Microsoft component:
-Microsoft Graph API. The public adapter probes `https://graph.microsoft.com/v1.0/$metadata` and records the call as AgentOps Ledger run evidence without accessing tenant or user data.
+Microsoft Graph API. The public adapter probes `https://graph.microsoft.com/v1.0/$metadata` and records the call as Agent Payment Ledger run evidence without accessing tenant or user data.
 
 Demo video:
 https://youtu.be/De8c_IgCueU

@@ -1,12 +1,18 @@
-# AgentOps Ledger
+# Agent Payment Ledger
 
-Flight recorder for enterprise agents. Record every tool call, approval gate, retry, error, payment, and final outcome in one local audit trail.
+Payment-aware ledger for autonomous agents. Record every tool call, approval gate, retry, error, x402-style payment, and final outcome in one local audit trail.
 
-AgentOps Ledger extends the original `x402-insights` spend observability project into a broader operations console for autonomous agents. The goal is simple: when an agent touches real systems, teams should be able to inspect exactly what happened.
+Agent Payment Ledger extends the original `x402-insights` spend observability project into a broader payment and operations console for autonomous agents. The goal is simple: when an agent touches a paid API or external system, teams should be able to inspect exactly what happened, what it cost, who approved it, and where the evidence lives.
+
+## Relationship to AgentOps.ai
+
+AgentOps.ai is an existing open-source agent monitoring platform at https://github.com/AgentOps-AI/agentops. This repository is not affiliated with AgentOps.ai. Agent Payment Ledger is a complementary payment/audit ledger pattern for paid agent calls, x402-style receipts, approvals, and exportable evidence. A local upstream contribution draft for an AgentOps.ai x402 paid-API telemetry example lives at [docs/agentops-ai-upstream-contribution-draft.md](docs/agentops-ai-upstream-contribution-draft.md).
 
 Hosted demo: https://bortlesboat.github.io/x402-insights/
 Public case study: https://bortlesboat.github.io/x402-insights/case-study.html
 Public launch page: https://bortlesboat.github.io/x402-insights/launch.html
+Public proof graph: https://bortlesboat.github.io/x402-insights/proof.html
+Machine-readable proof graph: https://bortlesboat.github.io/x402-insights/proof.json
 Hosted video: https://youtu.be/De8c_IgCueU
 Submission/outcome tracker: https://github.com/Bortlesboat/x402-insights/issues/10
 Public feedback issue: https://github.com/Bortlesboat/x402-insights/issues/21
@@ -21,7 +27,7 @@ Video thumbnail: https://bortlesboat.github.io/x402-insights/agentops-ledger-vid
 AI/judge discovery: https://bortlesboat.github.io/x402-insights/llms.txt
 Machine-readable judge index: https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json
 
-![AgentOps Ledger dashboard](docs/agentops-ledger-dashboard.png)
+![Agent Payment Ledger dashboard](docs/agentops-ledger-dashboard.png)
 
 ## What It Shows
 
@@ -153,6 +159,15 @@ attachInsights(facilitator, {
 
 Every verify and settle hook can be logged into the same ledger as normal agent tool calls and approvals.
 
+## Proof Graph
+
+Start from the public proof graph for the current status, proof links, screenshots, blockers, last-verified date, and machine-readable discovery files.
+
+- Human root: https://bortlesboat.github.io/x402-insights/proof.html
+- JSON root: https://bortlesboat.github.io/x402-insights/proof.json
+- AI discovery: https://bortlesboat.github.io/x402-insights/llms.txt
+- Judge index: https://bortlesboat.github.io/x402-insights/hackathon/judge-index.json
+
 ### Satoshi API Paid-Call Dogfood
 
 `x402-insights` is also being dogfooded against Satoshi API production x402 telemetry. The local dashboard below shows `prod` / `live` / `24h` observations for Satoshi paid-call endpoints, with `/api/v1/fees/landscape` as the top cost driver and recent events labeled `PROD`.
@@ -163,7 +178,7 @@ The live paid route `https://bitcoinsapi.com/api/v1/fees/landscape` returns an x
 
 ## Splunk Export
 
-The Splunk HEC adapter exports one selected run audit into Splunk as `agentops:run_event` telemetry.
+The Splunk HEC adapter exports one selected run audit into Splunk as legacy `agentops:run_event` telemetry. The Splunk source names are historical artifact names from the first package; the current public project name is Agent Payment Ledger.
 
 Proof packet: [docs/hackathon/splunk-hec-proof.md](docs/hackathon/splunk-hec-proof.md)
 Investigation pack: [adapters/splunk-hec/investigation-pack](adapters/splunk-hec/investigation-pack)
@@ -183,7 +198,7 @@ node adapters/splunk-hec/export-run-to-hec.mjs
 
 ## Microsoft Graph Adapter
 
-The Microsoft Graph adapter opens an Agent Academy Special Ops route by recording a read-only Microsoft Graph API metadata probe as AgentOps Ledger run evidence.
+The Microsoft Graph adapter opens an Agent Academy Special Ops route by recording a read-only Microsoft Graph API metadata probe as Agent Payment Ledger run evidence.
 
 Packet: [docs/hackathon/microsoft-agent-academy-special-ops.md](docs/hackathon/microsoft-agent-academy-special-ops.md)
 Adapter: [adapters/microsoft-graph](adapters/microsoft-graph)

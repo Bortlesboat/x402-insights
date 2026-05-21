@@ -1,13 +1,13 @@
 # Splunk HEC Proof
 
-This proof shows AgentOps Ledger events exported into a real local Splunk Enterprise instance through HTTP Event Collector (HEC). It is intended as supporting evidence for Splunk Agentic Ops and other enterprise-agent infrastructure submissions.
+This proof shows Agent Payment Ledger events exported into a real local Splunk Enterprise instance through HTTP Event Collector (HEC). It is intended as supporting evidence for Splunk Agentic Ops and other enterprise-agent infrastructure submissions.
 
 ## Environment
 
 - Splunk container: `splunk/splunk:latest`
 - Splunk Web: `http://127.0.0.1:8000`
 - HEC listener: `http://127.0.0.1:8088/services/collector/event`
-- AgentOps Ledger server: `http://127.0.0.1:4311`
+- Agent Payment Ledger server: `http://127.0.0.1:4311`
 - AgentOps run exported: `run_demo_vendor_blocked`
 - Splunk index: `agentops`
 - Splunk source: `agentops-ledger`
@@ -46,7 +46,7 @@ node adapters/splunk-hec/export-run-to-hec.mjs
 Verified output:
 
 ```text
-Exported 5 AgentOps Ledger events for run_demo_vendor_blocked to Splunk HEC
+Exported 5 Agent Payment Ledger events for run_demo_vendor_blocked to Splunk HEC
 ```
 
 ## Splunk Indexed Evidence
@@ -67,11 +67,11 @@ agentops:run_event agentops-ledger     5 05/18/2026 05:04:27 05/18/2026 05:04:31
 agentops:run_event manual              1 05/18/2026 05:21:54 05/18/2026 05:21:54
 ```
 
-The `agentops-ledger` row is the actual AgentOps Ledger export. The `manual` row is a separate one-event HEC probe used to isolate the local HEC/index setup during verification.
+The `agentops-ledger` row is the actual Agent Payment Ledger export. The `manual` row is a separate one-event HEC probe used to isolate the local HEC/index setup during verification.
 
 ## Why This Matters
 
-AgentOps Ledger does not only render a local dashboard. It can forward enterprise-agent run evidence into Splunk as operational telemetry. Once indexed, teams can build searches, alerts, and investigations around agent behavior:
+Agent Payment Ledger does not only render a local dashboard. It can forward enterprise-agent run evidence into Splunk as operational telemetry. Once indexed, teams can build searches, alerts, and investigations around agent behavior:
 
 - rejected human approvals
 - failed tool calls

@@ -1,6 +1,6 @@
-# AgentOps Ledger AI Investigation Prompts
+# Agent Payment Ledger AI Investigation Prompts
 
-Use these with Splunk AI Assistant, Splunk MCP Server, or another Splunk-connected investigation agent after AgentOps Ledger events are indexed as `agentops:run_event`.
+Use these with Splunk AI Assistant, Splunk MCP Server, or another Splunk-connected investigation agent after Agent Payment Ledger events are indexed as `agentops:run_event`.
 
 ## Run Timeline
 

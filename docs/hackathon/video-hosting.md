@@ -1,11 +1,11 @@
-# AgentOps Ledger Video Hosting Package
+# Agent Payment Ledger Video Hosting Package
 
 This package documents the Devpost-compatible YouTube upload for Splunk Agentic Ops and follow-on hackathon submissions.
 
 ## Hosted Video
 
 - Public YouTube URL: https://youtu.be/De8c_IgCueU
-- Title: `AgentOps Ledger: Enterprise Agent Flight Recorder`
+- Title: `Agent Payment Ledger: Paid-Agent Audit Trail`
 - Duration: 46 seconds
 - Public no-login verification: YouTube oEmbed returns the expected title.
 
@@ -21,19 +21,19 @@ This package documents the Devpost-compatible YouTube upload for Splunk Agentic 
 Title:
 
 ```text
-AgentOps Ledger: Enterprise Agent Flight Recorder
+Agent Payment Ledger: Paid-Agent Audit Trail
 ```
 
 Short description:
 
 ```text
-AgentOps Ledger records enterprise-agent tool calls, approval gates, retries, errors, x402-style payments, and final outcomes in one inspectable run ledger.
+Agent Payment Ledger records paid-agent tool calls, approval gates, retries, errors, x402-style payments, and final outcomes in one inspectable run ledger.
 ```
 
 Full description:
 
 ```text
-AgentOps Ledger is a flight recorder for enterprise agents.
+Agent Payment Ledger is a payment-aware audit trail for autonomous agents.
 
 The demo shows a vendor-risk workflow with three inspectable runs: one success after human approval, one flaky tool retry, and one high-risk payment blocked by a rejected approval. Each run records the operational evidence enterprise teams need before agents touch real systems: tool calls, approval gates, errors, retries, paid API events, final outcomes, risk flags, and exportable audit JSON.
 
@@ -67,14 +67,14 @@ Public or unlisted. Use public for portfolio credibility unless the platform/acc
 
 ## Thumbnail
 
-Use `agentops-ledger-video-thumbnail.png` as the upload thumbnail. It is a 1280x720 static thumbnail that shows the actual AgentOps Ledger dashboard, the product name, and the enterprise-agent evidence angle.
+Use `agentops-ledger-video-thumbnail.png` as the upload thumbnail. It is a 1280x720 static thumbnail that shows the actual Agent Payment Ledger dashboard, the product name, and the paid-agent evidence angle.
 
 If the host requires regeneration, open `docs/agentops-ledger-video-thumbnail.html` at 1280x720 and capture a full-page screenshot to `docs/agentops-ledger-video-thumbnail.png`.
 
 ## Upload Checklist
 
 - [x] Upload the captioned MP4 to YouTube, Vimeo, or Youku.
-- [x] Set the title to `AgentOps Ledger: Enterprise Agent Flight Recorder`.
+- [x] Set the title to `Agent Payment Ledger: Paid-Agent Audit Trail`.
 - [x] Paste the full description above.
 - [ ] Add the tags above.
 - [x] Set the thumbnail to `agentops-ledger-video-thumbnail.png`.

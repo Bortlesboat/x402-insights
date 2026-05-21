@@ -1,9 +1,15 @@
 {
   "project": {
-    "name": "AgentOps Ledger",
-    "tagline": "A flight recorder for enterprise agents.",
+    "name": "Agent Payment Ledger",
+    "tagline": "A payment-aware audit trail for autonomous agents.",
+    "relationship": {
+      "notAffiliatedWith": "AgentOps.ai",
+      "agentOpsAiRepository": "https://github.com/AgentOps-AI/agentops",
+      "upstreamContributionDraft": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/agentops-ai-upstream-contribution-draft.md"
+    },
     "status": {
       "nandaHackSubmitted": true,
+      "proofGraphPublished": true,
       "hostedVideoPublic": true,
       "splunkDevpostSubmitted": false,
       "lablabTechexSubmitted": false,
@@ -14,6 +20,9 @@
     }
   },
   "links": {
+    "proofGraph": "https://bortlesboat.github.io/x402-insights/proof.html",
+    "proofJson": "https://bortlesboat.github.io/x402-insights/proof.json",
+    "agentOpsAiUpstreamDraft": "https://github.com/Bortlesboat/x402-insights/blob/main/docs/agentops-ai-upstream-contribution-draft.md",
     "launchPage": "https://bortlesboat.github.io/x402-insights/launch.html",
     "hostedDemo": "https://bortlesboat.github.io/x402-insights/",
     "caseStudy": "https://bortlesboat.github.io/x402-insights/case-study.html",
@@ -49,7 +58,8 @@
     "primary": "Splunk Agentic Ops - Platform & Developer Experience",
     "secondary": "NandaHack - Infrastructure Agents",
     "additionalRoute": "Microsoft Agent Academy Hackathon - Special Ops",
-    "useCase": "Operational audit trail for enterprise agents that touch tools, approvals, payments, and external systems."
+    "useCase": "Operational audit trail for autonomous agents that touch tools, approvals, paid APIs, x402-style payments, and external systems."
   },
-  "updatedAt": "2026-05-18"
+  "lastVerified": "2026-05-21",
+  "updatedAt": "2026-05-21"
 }
